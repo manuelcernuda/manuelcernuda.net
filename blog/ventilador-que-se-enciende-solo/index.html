@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Un ventilador que se enciende solo · Manuel Cernuda</title>
+<meta name="description" content="Cómo hice que el ventilador del servidor se encienda solo cuando la CPU trabaja, con un relé wifi de Tuya controlado en local y un pequeño contenedor que consulta Prometheus.">
+<meta name="generator" content="webmaster 0.29.0">
+<meta name="theme-color" content="#0f1012">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Un ventilador que se enciende solo · Manuel Cernuda">
+<meta property="og:description" content="Cómo hice que el ventilador del servidor se encienda solo cuando la CPU trabaja, con un relé wifi de Tuya controlado en local y un pequeño contenedor que consulta Prometheus.">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://www.manuelcernuda.net/blog/ventilador-que-se-enciende-solo/"><link rel="canonical" href="https://www.manuelcernuda.net/blog/ventilador-que-se-enciende-solo/"><meta property="og:image" content="https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"><link rel="icon" href="../../assets/img/favicon-bc57e299.webp" type="image/webp"><link rel="alternate" type="application/rss+xml" title="Manuel Cernuda · Blog" href="../../rss.xml"><link rel="alternate" hreflang="en" href="../../en/blog/fan-that-switches-itself-on/">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>(function(){var h=document.documentElement;if(h.hasAttribute("data-pagina-cookies"))return;try{var d=JSON.parse(localStorage.getItem("consentimiento-cookies"));if(d&&(d.v==="si"||d.v==="no")&&Date.now()-d.t<31536000000)return}catch(e){}h.classList.add("cookies-pendiente")})();</script>
+<script src="../../assets/cookies.js" data-ga="G-S9NL9NGJ3G" data-dominio="www.manuelcernuda.net" data-si="Has aceptado las cookies de análisis." data-no="Has rechazado las cookies de análisis." data-nada="Todavía no has elegido." defer></script></head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<div class="pagina">
+  <a class="idioma" href="../../en/blog/fan-that-switches-itself-on/" hreflang="en" lang="en" title="Read in English">
+<img src="../../assets/banderas/gb.svg" alt="Read in English" width="28" height="21">
+  </a>
+  <header class="lateral">
+    <svg class="lateral-puntos" aria-hidden="true" width="132" height="96" viewBox="0 0 132 96">
+      <g fill="#ffc93c"><circle cx="4" cy="4" r="2"/><circle cx="24" cy="4" r="2"/><circle cx="44" cy="4" r="2"/><circle cx="64" cy="4" r="2"/><circle cx="84" cy="4" r="2"/><circle cx="4" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="44" cy="24" r="2"/><circle cx="64" cy="24" r="2"/><circle cx="4" cy="44" r="2"/><circle cx="24" cy="44" r="2"/><circle cx="44" cy="44" r="2"/><circle cx="4" cy="64" r="2"/><circle cx="24" cy="64" r="2"/><circle cx="4" cy="84" r="2"/></g>
+    </svg>
+    <div class="identidad">
+      <a class="foto-marco" href="../../" aria-label="Inicio">
+        <svg class="foto-anillo" aria-hidden="true" viewBox="0 0 168 168"><circle cx="84" cy="84" r="81" fill="none" stroke="#ffc93c" stroke-width="1.5" stroke-dasharray="4 7"/><circle cx="150" cy="40" r="6" fill="#ffc93c"/></svg>
+<img class="foto" src="../../assets/img/foto-96dbea32.webp" alt="Foto de Manuel Cernuda" width="144" height="144" style="object-position: 50% 34%">
+      </a>
+      <a class="nombre" href="../../">Manuel Cernuda</a>
+      <span class="raya raya-centro" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Principal" class="menu">
+      <ul>
+        <li><a href="../../"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span>Inicio</span></a></li>
+        <li><a href="../../curriculum/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 13h18"/></svg><span>Currículum</span></a></li>
+        <li><a href="../../blog/" aria-current="page"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>Blog</span></a></li>
+        <li><a href="../../lectura/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span>Lectura</span></a></li>
+        <li><a href="../../cubos/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5z"/><path d="M3.5 7.25L12 12l8.5-4.75M12 12v9.5"/><path d="M7.75 4.9l8.5 4.75M16.25 4.9L7.75 9.65" stroke-opacity=".5"/></svg><span>Mis cubos de Rubik</span></a></li>
+        <li><a href="https://hobbits.manuelcernuda.net/" target="_blank" rel="noopener"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="15.5" width="16" height="4.5" rx="1"/><rect x="2.5" y="11" width="15" height="4.5" rx="1"/><rect x="6" y="6.5" width="14" height="4.5" rx="1"/><path d="M7.5 15.5v4.5M5.5 11v4.5M9 6.5v4.5"/></svg><span>Mis Hobbits</span><span class="externo" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span><span class="oculto"> (se abre en otra pestaña)</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <div class="ancho lectura-estrecha">
+<article class="articulo">
+  <p><a class="volver" href="../../blog/">← Volver al blog</a></p>
+  <header class="articulo-cabecera">
+    <p class="muted meta">
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><time datetime="2026-10-04">4 de octubre de 2026</time></span>
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>9 min de lectura</span>
+    </p>
+    <h1>Un ventilador que se enciende solo<span class="punto">.</span></h1>
+<div class="etiquetas"><a class="etiqueta" href="../../blog/categoria/tech/">Tech</a></div>  </header>
+  <div class="prosa cuerpo"><p>En <a href="../base-refrigeradora-mac-mini/">la primera parte</a> conté cómo rescaté un Mac Mini de 2012 para convertirlo en el servidor de casa y cómo, cuando empezó a calentarse con la galería de fotos, le diseñé una base a medida con un ventilador USB de 80 mm debajo. Esta segunda parte va de lo que faltaba: que el ventilador se encienda solo cuando hace falta.</p>
+<h2>Encenderlo solo cuando hace falta: proyecto Evercooler</h2>
+<p>Con el ventilador ya montado bajo el Mac Mini, quedaba decidir cuándo gira. Tenerlo siempre encendido es la solución fácil, pero el servidor pasa casi todo el día tranquilo y solo se calienta en momentos concretos (en mi caso, sobre todo cuando la galería de fotos se pone a indexar). Quería que el ventilador se encendiera solo cuando el Mac Mini empieza a trabajar de verdad y que se apagara cuando termina, sin tener que acordarme de nada.</p>
+<h2>El dilema</h2>
+<p>La primera idea fue un enchufe inteligente con su app, pero eso es un interruptor a distancia, no una automatización. Seguiría siendo yo quien decide cuándo encenderlo.</p>
+<p>La segunda, montarlo todo en Home Assistant. Funciona, pero no lo tengo en el servidor y montar una plataforma entera para un solo ventilador me parecía matar moscas a cañonazos.</p>
+<p>También dudé sobre qué medir. Lo intuitivo es la temperatura, pero tiene trampa: cuando el ventilador enfría el equipo, la temperatura baja, el sistema decide apagarlo con la carga todavía en marcha y vuelta a calentarse. La CPU no depende del ventilador, así que no se engaña a sí misma. Además avisa antes: cuando la CPU sube, el calor todavía no ha llegado.</p>
+<h2>El término medio</h2>
+<p><a href="https://www.amazon.es/dp/B086HRPXHH" rel="noopener" target="_blank">Un relé wifi USB</a> intercalado entre el puerto del Mac Mini y el cable del ventilador, sin pelar ningún cable, y un pequeño contenedor que lo controla. Lo he llamado <strong>evercooler</strong>. Cada 30 segundos pregunta a Prometheus cómo va la CPU y, si hace falta, enciende el relé directamente por la red de casa.</p>
+<p>La clave está en que el relé es de la familia Tuya (los que se manejan con la app <em>Smart Life</em>) y esos dispositivos se pueden controlar en local, sin pasar por su nube, si conoces su clave de cifrado. Conseguir esa clave es la parte pesada, pero solo se hace una vez.</p>
+<h2>Cómo es el flujo</h2>
+<figure id="fig-1"><a class="ampliar" href="#img-1" aria-label="Ampliar imagen: De la CPU al ventilador sin salir de casa"><img loading="lazy" alt="De la CPU al ventilador sin salir de casa" src="../../assets/blog/2cc35da9a055448d.svg" /></a><figcaption>De la CPU al ventilador sin salir de casa</figcaption></figure>
+<p>Prometheus ya estaba midiendo el servidor con node-exporter, y Grafana me lo enseñaba en paneles. Evercooler solo tiene que leer ese dato, decidir y dar la orden al relé. La nube de Tuya aparece a un lado porque solo hizo falta para emparejar el relé y sacar la clave. El día a día no sale de casa.</p>
+<h2>Sacar la clave del relé</h2>
+<p>Primero, lo normal: se empareja el relé con la app <em>Smart Life</em> (en una wifi de 2,4 GHz) como cualquier enchufe inteligente. Con eso ya funciona desde el móvil, pero para hablar con él desde un programa hacen falta tres cosas: su identificador, su IP y su clave local. La clave no aparece en la app. Se genera al emparejar y la única forma oficial de leerla es la API de Tuya, que pide una cuenta de desarrollador.</p>
+<p>La web de desarrolladores de Tuya (<a href="https://platform.tuya.com" rel="noopener" target="_blank">Tuya Developer Platform</a>) es gratuita, pero no es precisamente amable. A mí me salió entera en chino y tuve que buscar el selector de idioma para pasarla a inglés. Estos fueron los pasos:</p>
+<ol>
+<li>Registrarse eligiendo <strong>España</strong> como país. Si la cuenta queda en el centro de datos chino, luego no ve los dispositivos europeos.</li>
+<li>Ir a <em>Cloud → Development → Create Cloud Project</em> y crear un proyecto de tipo <em>Smart Home</em>, con el centro de datos <em>Central Europe Data Center</em>.</li>
+<li>Aceptar las APIs que propone por defecto.</li>
+<li>Dentro del proyecto, ir a <em>Devices → Link App Account</em> y escanear el QR desde la propia app <em>Smart Life</em> (pestaña <em>Yo</em>, icono de escanear). Así el proyecto ve los dispositivos de la cuenta.</li>
+<li>En <em>Overview</em> apuntar el <em>Access ID</em> y el <em>Access Secret</em>.</li>
+</ol>
+<p>Con eso entra en juego <a href="https://github.com/jasonacox/tinytuya" rel="noopener" target="_blank">tinytuya</a>, una librería de Python que trae un asistente para descargar las claves. Para no instalar nada en el servidor, lo lanzo en un contenedor de usar y tirar:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">docker</span> run <span class="f">--rm</span> <span class="f">-it</span> <span class="f">--network</span> host <span class="f">-v</span> <span class="s">"$PWD"</span>:/work <span class="f">-w</span> /work \</span><span class="l">  python:3.12-slim sh <span class="f">-c</span> <span class="s">"pip install -q tinytuya &amp;&amp; python -m tinytuya wizard"</span></span></code></pre></div>
+<p>El asistente pide el <em>Access ID</em> (lo llama <em>API Key</em>), el <em>Access Secret</em>, el identificador de cualquier dispositivo y la región (<code>eu</code>). Después ofrece descargar los nombres de los datos de cada dispositivo y buscarlos en la red local. A todo, que sí. Al final enseña algo así:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">Polling local devices...</span><span class="l">    [Ventilador               ] 192.168.1.50       - [On]  - DPS: {'1': True, '9': 0, '38': 'memory'}</span></code></pre></div>
+<p>Ahí está todo lo necesario: la IP, que el relé responde y su estado. Los números son los "puntos de datos" del dispositivo. El <code>1</code> es el interruptor, el <code>9</code> una cuenta atrás que no uso y el <code>38</code> lo que hace el relé cuando vuelve la corriente. La documentación de Tuya dice que este último vale <code>0</code>, <code>1</code> o <code>2</code>, pero mi relé usa <code>off</code>, <code>on</code> y <code>memory</code>. Lo dejé en <code>on</code>, por una razón que cuento más abajo.</p>
+<p>El asistente guarda los identificadores y las claves en unos ficheros JSON en la carpeta desde la que se lanza. <strong>Ojo, que trae las claves de todos los dispositivos de la cuenta</strong>, no solo del relé. Esos ficheros se guardan con permisos restrictivos y no se suben a ningún repositorio.</p>
+<h2>Probar el relé desde un programa</h2>
+<p>Con la clave en la mano, controlar el relé son cuatro líneas. Un ejemplo con datos inventados:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">python</span></div><pre><code><span class="l"><span class="c">import</span> <span class="f">tinytuya</span></span><span class="l"> </span><span class="l">rele <span class="op">=</span> tinytuya<span class="op">.</span><span class="f">OutletDevice</span>(<span class="s">"ID_DEL_RELE"</span>, <span class="s">"192.168.1.50"</span>, <span class="s">"CLAVE_LOCAL"</span>)</span><span class="l">rele<span class="op">.</span><span class="f">set_version</span>(<span class="v">3.5</span>)</span><span class="l"> </span><span class="l"><span class="f">print</span>(rele<span class="op">.</span><span class="f">status</span>())</span><span class="l">rele<span class="op">.</span><span class="f">turn_off</span>()</span></code></pre></div>
+<p>Debería verse algo así, y el ventilador se para:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">{'dps': {'1': True, '9': 0, '38': 'on'}}</span></code></pre></div>
+<p>La versión de protocolo (<code>3.5</code> en mi caso) también la da el asistente. Si no coincide, el relé no contesta.</p>
+<h2>De dónde sale la CPU</h2>
+<p>Evercooler no necesita nada más que lo que ya había: le pregunta a la API de Prometheus por el uso medio de CPU de los últimos dos minutos.</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">promql</span></div><pre><code><span class="l"><span class="v">100</span> <span class="op">-</span> <span class="c">avg</span><span class="op">(</span><span class="c">rate</span><span class="op">(</span><span class="v">node_cpu_seconds_total</span>{<span class="v">mode</span><span class="op">=</span>"<span class="s">idle</span>"}[<span class="s">2m</span>]<span class="op">))</span> <span class="op">*</span> <span class="v">100</span></span></code></pre></div>
+<p>La consulta mide qué parte del tiempo no han estado ociosos los núcleos y la convierte en porcentaje. La media de dos minutos filtra los picos de unos segundos, que no calientan nada.</p>
+<p>Para elegir el umbral, antes de escribir una línea de código miré lo que había pasado en las dos semanas anteriores. Salió una carga muy de blanco o negro: la mitad del tiempo, la CPU estaba por debajo del 11 %, y cuando subía, se iba casi al 100 % durante una media hora, unas tres veces al día. Con ese perfil, el umbral exacto importa poco. Me quedé con el 80 %.</p>
+<h2>Ventanas de diez minutos</h2>
+<p>Lo que no quería era un ventilador que se encienda y se apague cada 30 segundos siguiendo la CPU. Así que la lógica trabaja por ventanas:</p>
+<ol>
+<li>Si la CPU supera el 80 %, enciende el ventilador y abre una ventana de 10 minutos.</li>
+<li>Durante la ventana no vuelve a decidir: el ventilador gira pase lo que pase.</li>
+<li>Al acabar, mira otra vez. Si la CPU sigue alta, otra ventana de 10 minutos. Si ha bajado, apaga.</li>
+</ol>
+<figure id="fig-2"><a class="ampliar" href="#img-2" aria-label="Ampliar imagen: El ventilador sigue a la carga en tramos de diez minutos"><img loading="lazy" alt="El ventilador sigue a la carga en tramos de diez minutos" src="../../assets/blog/46796e50a11e458e.svg" /></a><figcaption>El ventilador sigue a la carga en tramos de diez minutos</figcaption></figure>
+<p>En la práctica, el ventilador acompaña toda la carga y luego da un último repaso mientras el equipo se enfría. Nadie tiene que tocar nada.</p>
+<p>El corazón del programa, simplificado:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">python</span></div><pre><code><span class="l"><span class="c">import</span> <span class="f">time</span></span><span class="l"><span class="c">import</span> <span class="f">requests</span></span><span class="l"> </span><span class="l"><span class="k"># rele es el mismo OutletDevice del ejemplo anterior</span></span><span class="l"> </span><span class="l">UMBRAL <span class="op">=</span> <span class="v">80</span></span><span class="l">VENTANA <span class="op">=</span> <span class="v">10</span> <span class="op">*</span> <span class="v">60</span></span><span class="l">CONSULTA <span class="op">=</span> <span class="s">'100 - avg(rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100'</span></span><span class="l"> </span><span class="l"><span class="c">def</span> <span class="f">leer_cpu</span>():</span><span class="l">    r <span class="op">=</span> requests<span class="op">.</span><span class="f">get</span>(<span class="s">"http://prometheus:9090/api/v1/query"</span>, params<span class="op">=</span>{<span class="s">"query"</span>: CONSULTA})</span><span class="l">    <span class="c">return</span> <span class="f">float</span>(r<span class="op">.</span><span class="f">json</span>()[<span class="s">"data"</span>][<span class="s">"result"</span>][<span class="v">0</span>][<span class="s">"value"</span>][<span class="v">1</span>])</span><span class="l"> </span><span class="l">encendido <span class="op">=</span> <span class="v">False</span></span><span class="l">fin_ventana <span class="op">=</span> <span class="v">0</span></span><span class="l"> </span><span class="l"><span class="c">while</span> <span class="v">True</span>:</span><span class="l">    cpu <span class="op">=</span> <span class="f">leer_cpu</span>()</span><span class="l">    ahora <span class="op">=</span> time<span class="op">.</span><span class="f">time</span>()</span><span class="l"> </span><span class="l">    <span class="c">if</span> <span class="c">not</span> encendido <span class="c">and</span> cpu <span class="op">&gt;=</span> UMBRAL:</span><span class="l">        rele<span class="op">.</span><span class="f">turn_on</span>()</span><span class="l">        encendido, fin_ventana <span class="op">=</span> <span class="v">True</span>, ahora <span class="op">+</span> VENTANA</span><span class="l"> </span><span class="l">    <span class="c">elif</span> encendido <span class="c">and</span> ahora <span class="op">&gt;=</span> fin_ventana:</span><span class="l">        <span class="c">if</span> cpu <span class="op">&gt;=</span> UMBRAL:</span><span class="l">            fin_ventana <span class="op">=</span> ahora <span class="op">+</span> VENTANA</span><span class="l">        <span class="c">else</span>:</span><span class="l">            rele<span class="op">.</span><span class="f">turn_off</span>()</span><span class="l">            encendido <span class="op">=</span> <span class="v">False</span></span><span class="l"> </span><span class="l">    time<span class="op">.</span><span class="f">sleep</span>(<span class="v">30</span>)</span></code></pre></div>
+<p>La versión real hace algo más: lee el estado del relé en cada vuelta (por si alguien lo ha tocado desde la app) y expone sus propias métricas para que Prometheus también lo vigile a él. Pero la idea es esta.</p>
+<h2>Cosas a tener en cuenta</h2>
+<p><strong>Si algo falla, mejor encendido.</strong> Un ventilador de 5 V girando de más no hace daño. Un servidor sin ventilación en plena carga, sí. Por eso, si Prometheus deja de responder, evercooler enciende el ventilador. Si paro el contenedor, lo enciende antes de salir. Y el relé está configurado para arrancar encendido cuando vuelve la corriente (el punto de datos <code>38</code> en <code>on</code>). Por eso no uso la cuenta atrás que trae el propio relé, porque haría lo contrario: si el programa se cae, el ventilador acabaría apagado.</p>
+<p><strong>Los cambios a mano se respetan.</strong> Si lo enciendo desde la app, evercooler lo detecta y le aplica sus 10 minutos. Si lo apago con la CPU alta, lo vuelve a encender.</p>
+<p><strong>El relé sigue hablando con la nube.</strong> Aunque evercooler no la use, el relé mantiene su conexión con los servidores de Tuya, que es por donde le llegan las órdenes de la app. Mirando las consultas DNS en Pi-hole solo aparecen dominios de Tuya, y muy pocas veces, pero hay que saberlo. Si se quiere cortar del todo, se puede bloquear esa salida o cambiar el firmware del relé por uno libre, aunque eso ya son palabras mayores.</p>
+<p><strong>Sin internet sigue funcionando.</strong> El control va por la red local, así que una caída de la fibra no lo deja sin cerebro. Lo único que no se puede hacer sin conexión es usar la app del móvil.</p>
+<p><strong>La cuenta de desarrollador sobra después.</strong> En cuanto tuve la clave, desvinculé la app y borré el proyecto de la plataforma de Tuya. La clave sigue valiendo porque vive en el relé, no en el proyecto, y así no queda abierto un acceso por API a todos mis dispositivos. La pega es que, si algún día vuelvo a emparejar el relé, la clave cambia y toca repetir el proceso.</p>
+<h2>Por qué me convence</h2>
+<p>Ahora el Mac Mini trabaja tranquilo, el ventilador solo aparece cuando hace falta y yo me he olvidado de que existe, que es el mejor elogio que se le puede hacer a una automatización.</p>
+<p>Nada de esto habría sido tan fácil sin <a href="https://github.com/jasonacox/tinytuya" rel="noopener" target="_blank">tinytuya</a>, así que gracias a quienes la mantienen, por amor al arte, para que los demás podamos controlar estos aparatos en local.</p>
+<p>Gracias por acompañarme en las dos partes de este verano de cacharreo. Si te animas a montar algo parecido, cuéntamelo por redes, que me encantará verlo.</p></div>
+  <div class="visor" id="img-1" role="dialog" aria-label="De la CPU al ventilador sin salir de casa">
+  <img src="../../assets/blog/2cc35da9a055448d.svg" alt="De la CPU al ventilador sin salir de casa" loading="lazy">
+  <a class="visor-cerrar" href="#fig-1" aria-label="Cerrar">×</a>
+<a class="visor-flecha der" href="#img-2" aria-label="Siguiente">›</a><p class="visor-pie">De la CPU al ventilador sin salir de casa</p></div>
+<div class="visor" id="img-2" role="dialog" aria-label="El ventilador sigue a la carga en tramos de diez minutos">
+  <img src="../../assets/blog/46796e50a11e458e.svg" alt="El ventilador sigue a la carga en tramos de diez minutos" loading="lazy">
+  <a class="visor-cerrar" href="#fig-2" aria-label="Cerrar">×</a>
+<a class="visor-flecha izq" href="#img-1" aria-label="Anterior">‹</a><p class="visor-pie">El ventilador sigue a la carga en tramos de diez minutos</p></div>
+
+
+  <nav class="vecinas" aria-label="Otras entradas">
+<a class="vecina" href="../../blog/base-refrigeradora-mac-mini/"><span class="muted pequeno">← Anterior</span><span>Base refrigeradora para el viejo Mac Mini</span></a><a class="vecina derecha" href="../../blog/usa-enlaces-simbolicos/"><span class="muted pequeno">Siguiente →</span><span>Usa enlaces simbolicos para evitar duplicados</span></a>  </nav>
+</article>
+      <footer class="pie">
+        <span>© 2026 Manuel Cernuda · www.manuelcernuda.net</span>
+        <span>
+<a href="../../cookies/" data-cookies-abrir>Cookies</a> · <a href="../../rss.xml">RSS</a>        </span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="cookies-capa" id="aviso-cookies" hidden>
+  <div class="aviso-cookies" role="dialog" aria-modal="true" aria-labelledby="aviso-cookies-texto" tabindex="-1">
+    <p id="aviso-cookies-texto">Esta web usa cookies de análisis para saber cuánta gente la visita. ¿Me dejas usarlas?</p>
+    <div class="aviso-botones">
+      <button type="button" class="aviso-boton" data-cookies="si">Aceptar</button>
+      <button type="button" class="aviso-boton" data-cookies="no">Rechazar</button>
+    </div>
+    <p class="aviso-mas"><a href="../../cookies/">Más información</a></p>
+  </div>
+</div>
+</body>
+</html>

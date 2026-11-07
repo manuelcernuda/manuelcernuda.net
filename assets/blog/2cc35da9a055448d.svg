@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f2c94c" />
+    </marker>
+    <marker id="flecha-gris" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b93a1" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="560" fill="#111418" />
+
+  
+  <rect x="30" y="30" width="790" height="460" rx="18" fill="#161a20" stroke="#f2c94c" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="8 8" />
+  <text x="56" y="66" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">EN CASA · TODO POR LA RED LOCAL</text>
+
+  
+  <rect x="60" y="110" width="220" height="130" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="88" cy="138" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="88" y="143" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">1</text>
+  <text x="112" y="144" fill="#eef0f3" font-size="20" font-weight="700">Prometheus</text>
+  <text x="76" y="186" fill="#a9b0bc" font-size="14">Guarda la CPU que</text>
+  <text x="76" y="206" fill="#a9b0bc" font-size="14">mide node-exporter</text>
+
+  
+  <rect x="320" y="110" width="220" height="130" rx="12" fill="#1d222a" stroke="#f2c94c" stroke-opacity="0.35" stroke-width="1.5" />
+  <circle cx="348" cy="138" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="348" y="143" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">2</text>
+  <text x="372" y="144" fill="#eef0f3" font-size="20" font-weight="700">evercooler</text>
+  <text x="336" y="186" fill="#a9b0bc" font-size="14">Decide cada 30 s</text>
+  <text x="336" y="208" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13">tinytuya por LAN</text>
+
+  
+  <rect x="580" y="110" width="210" height="130" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="608" cy="138" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="608" y="143" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">3</text>
+  <text x="632" y="144" fill="#eef0f3" font-size="20" font-weight="700">Relé wifi</text>
+  <text x="596" y="186" fill="#a9b0bc" font-size="14">Da o corta los 5 V</text>
+  <text x="596" y="206" fill="#a9b0bc" font-size="14">del puerto USB</text>
+
+  <line x1="282" y1="175" x2="316" y2="175" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+  <line x1="542" y1="175" x2="576" y2="175" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+
+  
+  <rect x="580" y="300" width="210" height="110" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="608" cy="328" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="608" y="333" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">4</text>
+  <text x="632" y="334" fill="#eef0f3" font-size="20" font-weight="700">Ventilador</text>
+  <text x="596" y="374" fill="#a9b0bc" font-size="14">80 mm, bajo el Mac Mini</text>
+
+  <line x1="685" y1="242" x2="685" y2="296" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+
+  
+  <line x1="170" y1="242" x2="170" y2="298" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+  <line x1="430" y1="242" x2="430" y2="298" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+
+  
+  <rect x="60" y="300" width="480" height="160" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="84" y="340" fill="#eef0f3" font-size="22" font-weight="700">Mac Mini · Docker</text>
+  <text x="84" y="366" fill="#a9b0bc" font-size="15">Lo que ya tenía, más un contenedor nuevo</text>
+
+  <g font-family="'JetBrains Mono', Menlo, monospace" font-size="13">
+    <rect x="84" y="384" width="140" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="154" y="407" fill="#eef0f3" text-anchor="middle">node-exporter</text>
+    <text x="154" y="427" fill="#8b93a1" text-anchor="middle">métricas</text>
+
+    <rect x="240" y="384" width="140" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="310" y="407" fill="#eef0f3" text-anchor="middle">Grafana</text>
+    <text x="310" y="427" fill="#8b93a1" text-anchor="middle">paneles</text>
+
+    <rect x="396" y="384" width="124" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="458" y="407" fill="#eef0f3" text-anchor="middle">evercooler</text>
+    <text x="458" y="427" fill="#8b93a1" text-anchor="middle">el nuevo</text>
+  </g>
+
+  
+  <rect x="860" y="30" width="310" height="460" rx="18" fill="#14171c" stroke="#2c333d" stroke-width="2" />
+  <text x="886" y="66" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">NUBE DE TUYA</text>
+
+  <rect x="890" y="110" width="250" height="130" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="906" y="146" fill="#eef0f3" font-size="19" font-weight="700">Plataforma Tuya</text>
+  <text x="906" y="186" fill="#a9b0bc" font-size="14">Solo para sacar</text>
+  <text x="906" y="206" fill="#a9b0bc" font-size="14">la clave local</text>
+
+  <rect x="890" y="300" width="250" height="130" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="906" y="336" fill="#eef0f3" font-size="19" font-weight="700">App Smart Life</text>
+  <text x="906" y="376" fill="#a9b0bc" font-size="14">Empareja el relé</text>
+  <text x="906" y="396" fill="#a9b0bc" font-size="14">con la wifi de casa</text>
+
+  <line x1="1015" y1="242" x2="1015" y2="298" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+  <text x="1027" y="276" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13">cuenta vinculada</text>
+
+  
+  <path d="M1015,108 V90 H430 V106" fill="none" stroke="#8b93a1" stroke-width="2" marker-end="url(#flecha-gris)" />
+  <text x="620" y="82" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13">clave local, una sola vez</text>
+
+  <text x="600" y="530" fill="#a9b0bc" font-size="16" text-anchor="middle">El día a día no sale de casa. La nube de Tuya solo hizo falta para emparejar y sacar la clave.</text>
+</svg>

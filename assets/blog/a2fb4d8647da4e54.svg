@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 580" width="1200" height="580" font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f2c94c" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="580" fill="#111418" />
+
+  
+  <rect x="30" y="50" width="420" height="460" rx="18" fill="#161a20" stroke="#f2c94c" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="8 8" />
+  <text x="56" y="88" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">EN EL SERVIDOR</text>
+
+  
+  <rect x="60" y="130" width="360" height="160" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="84" y="168" fill="#eef0f3" font-size="20" font-weight="700">Scripts y cron</text>
+  <text x="84" y="200" fill="#a9b0bc" font-size="14">Copias de seguridad y otras</text>
+  <text x="84" y="220" fill="#a9b0bc" font-size="14">tareas programadas</text>
+  <rect x="84" y="236" width="312" height="36" rx="8" fill="#161a20" stroke="#2c333d" />
+  <text x="240" y="259" fill="#eef0f3" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">notificaciones-telegram -t …</text>
+
+  
+  <rect x="60" y="320" width="360" height="160" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="84" y="358" fill="#eef0f3" font-size="20" font-weight="700">Aplicaciones</text>
+  <text x="84" y="390" fill="#a9b0bc" font-size="14">Servicios en Docker que ya</text>
+  <text x="84" y="410" fill="#a9b0bc" font-size="14">hacen peticiones HTTP</text>
+  <rect x="84" y="426" width="312" height="36" rx="8" fill="#161a20" stroke="#2c333d" />
+  <text x="240" y="449" fill="#eef0f3" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">POST /sendMessage</text>
+
+  
+  <rect x="500" y="240" width="200" height="140" rx="12" fill="#1d222a" stroke="#f2c94c" stroke-opacity="0.35" stroke-width="1.5" />
+  <text x="600" y="282" fill="#eef0f3" font-size="19" font-weight="700" text-anchor="middle">API de Telegram</text>
+  <text x="600" y="312" fill="#a9b0bc" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">sendMessage</text>
+  <text x="600" y="338" fill="#a9b0bc" font-size="14" text-anchor="middle">a través del bot</text>
+
+  <text x="600" y="412" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">chat_id +</text>
+  <text x="600" y="432" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">message_thread_id</text>
+
+  
+  <path d="M422,210 C460,210 460,290 496,290" fill="none" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+  <path d="M422,400 C460,400 460,330 496,330" fill="none" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+
+  
+  <rect x="750" y="50" width="420" height="460" rx="18" fill="#14171c" stroke="#2c333d" stroke-width="2" />
+  <text x="776" y="88" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">GRUPO DE TELEGRAM</text>
+  <text x="776" y="110" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">SEPARADO EN TEMAS</text>
+
+  <rect x="780" y="130" width="360" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="804" y="168" fill="#eef0f3" font-size="19" font-weight="700">Notificaciones</text>
+  <text x="804" y="196" fill="#a9b0bc" font-size="14">Algo ha terminado bien</text>
+  <text x="804" y="216" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13">-t aviso</text>
+
+  <rect x="780" y="260" width="360" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="804" y="298" fill="#eef0f3" font-size="19" font-weight="700">Alertas</text>
+  <text x="804" y="326" fill="#a9b0bc" font-size="14">Algo ha fallado</text>
+  <text x="804" y="346" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13">-t alerta</text>
+
+  <rect x="780" y="390" width="360" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="804" y="428" fill="#eef0f3" font-size="19" font-weight="700">Novedades</text>
+  <text x="804" y="456" fill="#a9b0bc" font-size="14">Un tema propio para lo que hace ruido</text>
+  <text x="804" y="476" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13">-h 9</text>
+
+  
+  <path d="M702,310 H730 V180 H776" fill="none" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+  <path d="M702,310 H776" fill="none" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+  <path d="M702,310 H730 V440 H776" fill="none" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+
+  <text x="600" y="552" fill="#a9b0bc" font-size="16" text-anchor="middle">Cada mensaje llega al tema que le toca: lo normal no tapa lo importante.</text>
+</svg>

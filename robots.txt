@@ -1,0 +1,5 @@
+User-agent: *
+Disallow: /assets/cubos/
+Disallow: /assets/portadas/
+
+Sitemap: https://www.manuelcernuda.net/sitemap.xml

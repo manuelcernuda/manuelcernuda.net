@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+<channel>
+  <title>Notes and projects · Manuel Cernuda</title>
+  <link>https://www.manuelcernuda.net/en/blog/</link>
+  <description>Notes, projects and things I keep learning.</description>
+  <language>en-gb</language>
+  <lastBuildDate>Sat, 07 Nov 2026 09:57:42 +0100</lastBuildDate>
+<atom:link href="https://www.manuelcernuda.net/en/rss.xml" rel="self" type="application/rss+xml"/>  <item>
+    <title>Telegram notifications from your own processes and applications</title>
+    <link>https://www.manuelcernuda.net/en/blog/telegram-notifications-processes-apps/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/telegram-notifications-processes-apps/</guid>
+    <pubDate>Sat, 07 Nov 2026 10:00:00 +0100</pubDate>
+<category>Tech</category>    <description>A Telegram group split into topics and a small command so my scripts and applications tell me what went well and, above all, what went wrong.</description>
+  </item>
+  <item>
+    <title>My grandmother’s lullaby</title>
+    <link>https://www.manuelcernuda.net/en/blog/my-grandmothers-lullaby/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/my-grandmothers-lullaby/</guid>
+    <pubDate>Sat, 31 Oct 2026 00:00:00 +0100</pubDate>
+<category>Personal</category>    <description>I don&#39;t know how long I&#39;ve been meaning to write about Mil Venecies. This comic, written by my uncle Guti and drawn by my cousin Castri, tells the story of our grandmother Olvido, Guti&#39;s mother. It won them the 17th…</description>
+  </item>
+  <item>
+    <title>A CMS that never leaves home</title>
+    <link>https://www.manuelcernuda.net/en/blog/a-cms-that-never-leaves-home/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/a-cms-that-never-leaves-home/</guid>
+    <pubDate>Sat, 31 Oct 2026 00:00:00 +0100</pubDate>
+<category>Tech</category>    <description>I&#39;ve been collecting editions of The Hobbit in different languages for years, and until recently the collection&#39;s website lived on a Google Site. It worked, but it was far from flexible. Every time a new book arrived I…</description>
+  </item>
+  <item>
+    <title>Use symbolic links to avoid duplicates</title>
+    <link>https://www.manuelcernuda.net/en/blog/use-symbolic-links/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/use-symbolic-links/</guid>
+    <pubDate>Sun, 25 Oct 2026 00:00:00 +0200</pubDate>
+<category>Tech</category>    <description>The problem with Yakreader Do you have an app that doesn&#39;t handle users, and you want several people to use it? That was my situation with Yakreader, my comic and manga reader. Yakreader has no users, and in a reader,…</description>
+  </item>
+  <item>
+    <title>A fan that switches itself on</title>
+    <link>https://www.manuelcernuda.net/en/blog/fan-that-switches-itself-on/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/fan-that-switches-itself-on/</guid>
+    <pubDate>Sun, 04 Oct 2026 12:00:00 +0200</pubDate>
+<category>Tech</category>    <description>How I made my server&#39;s fan switch on only when the CPU is working, with a Tuya wifi relay controlled locally and a small container that queries Prometheus.</description>
+  </item>
+  <item>
+    <title>Mac mini cooling stand</title>
+    <link>https://www.manuelcernuda.net/en/blog/mac-mini-cooling-stand/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/mac-mini-cooling-stand/</guid>
+    <pubDate>Sat, 03 Oct 2026 16:00:00 +0200</pubDate>
+<category>Tech</category>    <description>I rescued a 2012 Mac Mini from the cupboard and turned it into my home server. When it started overheating, I designed a custom stand for it with a fan underneath.</description>
+  </item>
+  <item>
+    <title>How to create a Telegram bot</title>
+    <link>https://www.manuelcernuda.net/en/blog/create-telegram-bot/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/create-telegram-bot/</guid>
+    <pubDate>Sun, 20 Sep 2026 11:00:00 +0200</pubDate>
+<category>Tech</category>    <description>How I built miBusete, a private Telegram bot that tells you how long until the bus arrives, with no database and no open ports, and what I learnt along the way.</description>
+  </item>
+  <item>
+    <title>Another Monday crossed off the calendar</title>
+    <link>https://www.manuelcernuda.net/en/blog/another-monday-crossed-off/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/another-monday-crossed-off/</guid>
+    <pubDate>Sat, 16 Mar 2019 20:17:00 +0100</pubDate>
+<category>Personal</category>    <description>Another Monday crossed off the calendar. Another trip back up that hill where I feel your absence most, unable to hear you, without you there.</description>
+  </item>
+  <item>
+    <title>The tragedy of time relativity</title>
+    <link>https://www.manuelcernuda.net/en/blog/the-tragedy-of-time-relativity/</link>
+    <guid isPermaLink="true">https://www.manuelcernuda.net/en/blog/the-tragedy-of-time-relativity/</guid>
+    <pubDate>Thu, 18 Oct 2018 21:27:00 +0200</pubDate>
+    <description>I have a family that makes me happy, a job I love and great friends. So why do I keep asking myself Steve Jobs&#39; question in front of the mirror? A reflection on routine, weekends that fly by and time as the most precious thing we have.</description>
+  </item>
+</channel>
+</rss>
