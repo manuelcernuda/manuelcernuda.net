@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to create a Telegram bot · Manuel Cernuda</title>
+<meta name="description" content="How I built miBusete, a private Telegram bot that tells you how long until the bus arrives, with no database and no open ports, and what I learnt along the way.">
+<meta name="generator" content="webmaster 0.29.0">
+<meta name="theme-color" content="#0f1012">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How to create a Telegram bot · Manuel Cernuda">
+<meta property="og:description" content="How I built miBusete, a private Telegram bot that tells you how long until the bus arrives, with no database and no open ports, and what I learnt along the way.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://www.manuelcernuda.net/en/blog/create-telegram-bot/"><link rel="canonical" href="https://www.manuelcernuda.net/en/blog/create-telegram-bot/"><meta property="og:image" content="https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"><link rel="icon" href="../../../assets/img/favicon-bc57e299.webp" type="image/webp"><link rel="alternate" type="application/rss+xml" title="Manuel Cernuda · Blog" href="../../../en/rss.xml"><link rel="alternate" hreflang="es" href="../../../blog/crear-bot-telegram/">
+<link rel="stylesheet" href="../../../assets/style.css">
+<script>(function(){var h=document.documentElement;if(h.hasAttribute("data-pagina-cookies"))return;try{var d=JSON.parse(localStorage.getItem("consentimiento-cookies"));if(d&&(d.v==="si"||d.v==="no")&&Date.now()-d.t<31536000000)return}catch(e){}h.classList.add("cookies-pendiente")})();</script>
+<script src="../../../assets/cookies.js" data-ga="G-S9NL9NGJ3G" data-dominio="www.manuelcernuda.net" data-si="You have accepted analytics cookies." data-no="You have declined analytics cookies." data-nada="You have not chosen yet." defer></script></head>
+<body>
+<a class="saltar" href="#contenido">Skip to content</a>
+<div class="pagina">
+  <a class="idioma" href="../../../blog/crear-bot-telegram/" hreflang="es" lang="es" title="Leer en español">
+<img src="../../../assets/banderas/es.svg" alt="Leer en español" width="28" height="21">
+  </a>
+  <header class="lateral">
+    <svg class="lateral-puntos" aria-hidden="true" width="132" height="96" viewBox="0 0 132 96">
+      <g fill="#ffc93c"><circle cx="4" cy="4" r="2"/><circle cx="24" cy="4" r="2"/><circle cx="44" cy="4" r="2"/><circle cx="64" cy="4" r="2"/><circle cx="84" cy="4" r="2"/><circle cx="4" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="44" cy="24" r="2"/><circle cx="64" cy="24" r="2"/><circle cx="4" cy="44" r="2"/><circle cx="24" cy="44" r="2"/><circle cx="44" cy="44" r="2"/><circle cx="4" cy="64" r="2"/><circle cx="24" cy="64" r="2"/><circle cx="4" cy="84" r="2"/></g>
+    </svg>
+    <div class="identidad">
+      <a class="foto-marco" href="../../../en/" aria-label="Home">
+        <svg class="foto-anillo" aria-hidden="true" viewBox="0 0 168 168"><circle cx="84" cy="84" r="81" fill="none" stroke="#ffc93c" stroke-width="1.5" stroke-dasharray="4 7"/><circle cx="150" cy="40" r="6" fill="#ffc93c"/></svg>
+<img class="foto" src="../../../assets/img/foto-96dbea32.webp" alt="Photo of Manuel Cernuda" width="144" height="144" style="object-position: 50% 34%">
+      </a>
+      <a class="nombre" href="../../../en/">Manuel Cernuda</a>
+      <span class="raya raya-centro" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Main" class="menu">
+      <ul>
+        <li><a href="../../../en/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span>Home</span></a></li>
+        <li><a href="../../../en/resume/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 13h18"/></svg><span>Résumé</span></a></li>
+        <li><a href="../../../en/blog/" aria-current="page"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>Blog</span></a></li>
+        <li><a href="../../../en/reading/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span>Reading</span></a></li>
+        <li><a href="../../../en/cubes/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5z"/><path d="M3.5 7.25L12 12l8.5-4.75M12 12v9.5"/><path d="M7.75 4.9l8.5 4.75M16.25 4.9L7.75 9.65" stroke-opacity=".5"/></svg><span>My Rubik&#39;s Cubes</span></a></li>
+        <li><a href="https://hobbits.manuelcernuda.net/" target="_blank" rel="noopener"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="15.5" width="16" height="4.5" rx="1"/><rect x="2.5" y="11" width="15" height="4.5" rx="1"/><rect x="6" y="6.5" width="14" height="4.5" rx="1"/><path d="M7.5 15.5v4.5M5.5 11v4.5M9 6.5v4.5"/></svg><span>My Hobbits</span><span class="externo" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span><span class="oculto"> (opens in a new tab)</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <div class="ancho lectura-estrecha">
+<article class="articulo">
+  <p><a class="volver" href="../../../en/blog/">← Back to the blog</a></p>
+  <header class="articulo-cabecera">
+    <p class="muted meta">
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><time datetime="2026-09-20">20 September 2026</time></span>
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>8 min read</span>
+    </p>
+    <h1>How to create a Telegram bot<span class="punto">.</span></h1>
+<div class="etiquetas"><a class="etiqueta" href="../../../en/blog/category/tech/">Tech</a></div>  </header>
+  <div class="prosa cuerpo"><p>My daughter has an iPhone 7 Plus handed down from her mother (who in turn inherited it from me), and the official app for the Oviedo buses didn't work well on it. It took ages to load and often threw errors.</p>
+<p>When your teenage daughter is starting to get around town and can't quickly find out how long the bus will be or where to catch it, that's a problem. But tech parents use problems as an excuse to tinker.</p>
+<p>Years ago I built <a href="https://github.com/manuelcernuda/TUAbble" rel="noopener" target="_blank">an app for the Pebble watch</a> (a smartwatch with an e-paper screen) that used the public API behind the city buses' website. It turns out the API is still the same and still public. Off we go, but... what's the quickest solution that delivers the most value?</p>
+<h2>A Telegram bot</h2>
+<p>At home we don't use WhatsApp to talk to each other, we use Telegram, which lets you create bots. Since I already had the Docker server running all day, I thought: what if I build a private, easy-to-use bot where you say whether you're heading into town or heading home, and it tells you how long our lines will be at our usual stops? What if I also add the ones for Parque Principado (the classic out-of-town shopping centre where teenagers go to spend the afternoon), so she has them to hand when she goes there? And what if it also finds the nearest stop based on her location, in case there's a closer one she doesn't know about?</p>
+<p>So we got to work, and that's how miBusete was born. It's driven entirely by buttons, with no typing, and it answers a single question: how long until the bus I care about, in minutes and with the estimated arrival time.</p>
+<h2>How it's built</h2>
+<p>miBusete is a Docker container with a Node.js app and the <a href="https://telegraf.js.org" rel="noopener" target="_blank">Telegraf</a> library, which makes talking to Telegram much simpler. It's six files and around 400 lines in total. It has no database: everything it needs (who can use it, which stops and which lines) lives in two configuration files.</p>
+<figure id="fig-1"><a class="ampliar" href="#img-1" aria-label="Enlarge image: miBusete's architecture: everything goes out from home, nothing comes in"><img loading="lazy" alt="miBusete's architecture: everything goes out from home, nothing comes in" src="../../../assets/blog/ecf8f3b1a4ba43bc.svg" /></a><figcaption>miBusete's architecture: everything goes out from home, nothing comes in</figcaption></figure>
+<p>The key is how it receives messages. A Telegram bot can work in two ways:</p>
+<ul>
+<li><strong>Webhook:</strong> Telegram calls your server every time someone taps a button. For that, your server has to be published on the internet, with a URL and an HTTPS certificate, and you need to open a port on your router.</li>
+<li><strong>Polling:</strong> the bot itself keeps asking Telegram whether there's anything new. Telegram holds on to the messages until the bot collects them.</li>
+</ul>
+<p>I went with polling. Every connection goes out from home (to Telegram and to the bus API), so nothing of mine is exposed: no open ports, no public URL, no certificates. If I switch the container off tomorrow, nobody outside notices anything except that the bot doesn't reply.</p>
+<p>The other important decision was not to let the bot talk directly to the API of TUA (the bus company). In between there's a module, <code>busApi.js</code>, that turns its response into something simple: line, minutes and arrival time. If the API changes one day, that's the only file I have to touch.</p>
+<h2>Creating the bot in Telegram</h2>
+<p>Bots are created from Telegram itself, by talking to another bot:</p>
+<ol>
+<li>Open a chat with <code>@BotFather</code> and type <code>/newbot</code>.</li>
+<li>Choose a display name and a username ending in <code>bot</code>. The short ones are usually taken, so you'll need a bit of imagination.</li>
+<li>BotFather gives you a <strong>token</strong>. Keep it safe: whoever has it controls the bot.</li>
+<li>If you like, you can add a description and a picture from <code>/mybots</code>.</li>
+</ol>
+<p>The token goes in a <code>.env</code> file, outside the code:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">TELEGRAM_BOT_TOKEN=coloca_aqui_el_token_de_botfather</span></code></pre></div>
+<p>With that you can write the simplest possible bot. First, the two dependencies:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">npm</span> install telegraf dotenv</span></code></pre></div>
+<p>And a <code>src/bot.js</code> file that replies to <code>/start</code>:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">javascript</span></div><pre><code><span class="l"><span class="f">require</span>(<span class="s">'dotenv'</span>).<span class="f">config</span>();</span><span class="l"><span class="c">const</span> { Telegraf } <span class="op">=</span> <span class="f">require</span>(<span class="s">'telegraf'</span>);</span><span class="l"> </span><span class="l"><span class="c">const</span> bot <span class="op">=</span> <span class="c">new</span> <span class="f">Telegraf</span>(process.env.TELEGRAM_BOT_TOKEN);</span><span class="l"> </span><span class="l">bot.<span class="f">start</span>((ctx) =&gt; ctx.<span class="f">reply</span>(<span class="s">'Hola, soy miBusete'</span>));</span><span class="l"> </span><span class="l">bot.<span class="f">launch</span>();</span><span class="l">console.<span class="f">log</span>(<span class="s">'miBusete arrancado (polling)'</span>);</span></code></pre></div>
+<p><code>bot.launch()</code> starts polling with no further configuration. When you run it with <code>node src/bot.js</code> (or in the container), you should see this in the log:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">miBusete arrancado (polling)</span></code></pre></div>
+<p>If you send it <code>/start</code> from Telegram, it replies. From here on, it's all about adding buttons.</p>
+<h2>Family only: the whitelist</h2>
+<p>A Telegram bot is public: anyone who finds its name can message it. So that only we can use it at home, every message first goes through a filter with the list of allowed users. In Telegraf that's a middleware, a function that runs before anything else:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">javascript</span></div><pre><code><span class="l"><span class="c">function</span> <span class="f">crearWhitelistMiddleware</span>(whitelist) {</span><span class="l">  <span class="c">const</span> permitidos <span class="op">=</span> <span class="c">new</span> <span class="f">Set</span>(whitelist.<span class="f">map</span>(<span class="f">String</span>));</span><span class="l"> </span><span class="l">  <span class="c">return</span> (ctx, next) =&gt; {</span><span class="l">    <span class="c">const</span> userId <span class="op">=</span> <span class="f">String</span>(ctx.<span class="c">from</span><span class="op">?</span>.id <span class="op">||</span> <span class="s">''</span>);</span><span class="l"> </span><span class="l">    <span class="c">if</span> (<span class="op">!</span>permitidos.<span class="f">has</span>(userId)) {</span><span class="l">      console.<span class="f">warn</span>(<span class="s">`[whitelist] Acceso rechazado para userId=</span><span class="v">${</span>userId<span class="v">}</span><span class="s">`</span>);</span><span class="l">      <span class="c">return</span> ctx.<span class="f">reply</span>(<span class="s">'No tienes acceso a este bot.'</span>);</span><span class="l">    }</span><span class="l"> </span><span class="l">    <span class="c">return</span> <span class="f">next</span>();</span><span class="l">  };</span><span class="l">}</span><span class="l"> </span><span class="l">bot.<span class="f">use</span>(<span class="f">crearWhitelistMiddleware</span>(config.whitelist));</span></code></pre></div>
+<p>If the user isn't on the list, the message never reaches any button or command. The list lives in <code>config.json</code>, alongside the stops for each direction (the data in this example is made up):</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">json</span></div><pre><code><span class="l">{</span><span class="l">  <span class="c">"whitelist"</span>: [<span class="v">111111111</span>, <span class="v">222222222</span>],</span><span class="l">  <span class="c">"direcciones"</span>: {</span><span class="l">    <span class="c">"ida"</span>:    [{ <span class="c">"id"</span>: <span class="s">"1234"</span>, <span class="c">"nombre"</span>: <span class="s">"Parada de ejemplo"</span> }],</span><span class="l">    <span class="c">"vuelta"</span>: [{ <span class="c">"id"</span>: <span class="s">"5678"</span>, <span class="c">"nombre"</span>: <span class="s">"Otra parada"</span> }]</span><span class="l">  }</span><span class="l">}</span></code></pre></div>
+<p>You can get your Telegram ID from the <code>@userinfobot</code> bot. And there's a handy trick: since the filter writes the rejected <code>userId</code> to the log, if someone new messages the bot, their ID shows up in the logs and you just copy it into the list.</p>
+<p><code>config.json</code> and <code>.env</code> are never pushed to the repository. They're in <code>.gitignore</code>, and templates are published instead (<code>config.json.example</code> and <code>.env.example</code>):</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">node_modules/</span><span class="l">.env</span><span class="l">config.json</span></code></pre></div>
+<p>Before the first commit, a quick <code>git status</code> to check that neither of them appears in the list.</p>
+<h2>The navigation interface</h2>
+<figure id="fig-2" class="figura figura--derecha figura--grande"><a class="ampliar" href="#img-2" aria-label="Enlarge image: The start menu: into town, home or the shopping centre"><img loading="lazy" alt="The start menu: into town, home or the shopping centre" src="../../../assets/blog/c9a1aefbb4fb42ad.webp" /></a><figcaption>The start menu: into town, home or the shopping centre</figcaption></figure>
+<p>The bot has four screens: choosing a direction (into town, home or the shopping centre), the list of stops for that direction, a stop's detail with how long each line will be and, finally, the nearest stop. The detail screen has a button to refresh and another to go back.</p>
+<p>The interesting bit is that the bot doesn't remember anything between taps. Each button carries its own meaning inside it, in a field called <code>callback_data</code>:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">direccion:ida</span><span class="l">parada:ida:1234</span><span class="l">refrescar:ida:1234</span></code></pre></div>
+<p>When you tap "Refrescar" (refresh), the button already says which direction and which stop you were looking at, so the bot needs no sessions and no database. It catches each type of button with a regular expression (<code>bot.action(/^parada:(...):(.+)$/)</code>) and that's it.</p>
+<figure id="fig-3" class="figura figura--izquierda"><a class="ampliar" href="#img-3" aria-label="Enlarge image: The list of stops for a direction, with the search for the nearest one"><img loading="lazy" alt="The list of stops for a direction, with the search for the nearest one" src="../../../assets/blog/12af632a08d34954.webp" /></a><figcaption>The list of stops for a direction, with the search for the nearest one</figcaption></figure>
+<p>The TUA API is slow (it takes several seconds), and you notice it. So the bot replies straight away with "Consultando..." (checking) and then <strong>edits that same message</strong> with the result. The user sees that something is happening, the chat doesn't fill up with repeated messages when refreshing and, if something fails, the error appears right there instead of leaving an endless "Consultando...".</p>
+<p>This also sidesteps a classic Telegram error: if you try to edit a message with exactly the same text it already has (refresh twice in a row and the minutes haven't changed), Telegram rejects it with <code>message is not modified</code>. By always going through an "Actualizando..." (updating) step, the text always changes.</p>
+<h2>Which stop is nearest?</h2>
+<p>Inside each direction there's a button to find the nearest stop. When you tap it, the bot shows Telegram's built-in button for sharing your location and, with the coordinates, works out the distance to every stop in that direction using the Haversine formula (the distance between two points on a sphere):</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">javascript</span></div><pre><code><span class="l"><span class="c">function</span> <span class="f">distanciaMetros</span>(lat1, lng1, lat2, lng2) {</span><span class="l">  <span class="c">const</span> dLat <span class="op">=</span> <span class="f">rad</span>(lat2 <span class="op">-</span> lat1);</span><span class="l">  <span class="c">const</span> dLng <span class="op">=</span> <span class="f">rad</span>(lng2 <span class="op">-</span> lng1);</span><span class="l">  <span class="c">const</span> a <span class="op">=</span> <span class="f">Math</span>.<span class="f">sin</span>(dLat <span class="op">/</span> <span class="v">2</span>) <span class="op">**</span> <span class="v">2</span> <span class="op">+</span></span><span class="l">            <span class="f">Math</span>.<span class="f">cos</span>(<span class="f">rad</span>(lat1)) <span class="op">*</span> <span class="f">Math</span>.<span class="f">cos</span>(<span class="f">rad</span>(lat2)) <span class="op">*</span> <span class="f">Math</span>.<span class="f">sin</span>(dLng <span class="op">/</span> <span class="v">2</span>) <span class="op">**</span> <span class="v">2</span>;</span><span class="l">  <span class="c">return</span> <span class="v">6371000</span> <span class="op">*</span> <span class="v">2</span> <span class="op">*</span> <span class="f">Math</span>.<span class="f">atan2</span>(<span class="f">Math</span>.<span class="f">sqrt</span>(a), <span class="f">Math</span>.<span class="f">sqrt</span>(<span class="v">1</span> <span class="op">-</span> a));</span><span class="l">}</span></code></pre></div>
+<figure id="fig-4" class="figura figura--derecha"><a class="ampliar" href="#img-4" aria-label="Enlarge image: The nearest stop, with the distance, the times and the map link"><img loading="lazy" alt="The nearest stop, with the distance, the times and the map link" src="../../../assets/blog/a21eb16728e04f31.webp" /></a><figcaption>The nearest stop, with the distance, the times and the map link</figcaption></figure>
+<p>With around 80 stops per direction, going through all of them is instant. No mapping API is needed. The result includes the distance, the times for that stop and a Google Maps link to walk there.</p>
+<p>This is the one small exception to not storing anything: the location message arrives without the <code>callback_data</code> from the previous button, so the bot notes in memory which direction that chat asked for and deletes it as soon as it's used.</p>
+<p>The most fun part was getting the coordinates, because the API doesn't provide them. It turns out the TUA website draws a map for each line, and the source code of each page contains the stops with their latitude and longitude. All it took was saving the HTML from the browser, extracting them with a small script, sorting them by direction and removing duplicates. Sometimes the data you need is already on the web, even if there's no API.</p>
+<h2>Things to bear in mind</h2>
+<p><strong>A silent error looks like a hang.</strong> For a few days, searching for the nearest stop left the bot stuck on "Buscando..." (searching) forever. It wasn't the API: the container logs (<code>docker logs</code>) showed <code>400: Bad Request: message can't be edited</code>. The message had been sent with one type of keyboard and then the bot tried to edit it with another. Removing it fixed things, but what really made it hard was that the error was being swallowed silently. Since then, every failure goes to the log and to the chat itself.</p>
+<p><strong>An exact text filter fails without warning.</strong> To avoid showing irrelevant lines, the bot compares each bus's destination with a list of allowed destinations, letter by letter. When I reorganised that list, I put one line's destinations in the opposite direction, and the bot started saying "Sin servicio" (no service) at almost every stop. No errors, just empty results. I solved it by looking at the API's raw response and comparing it with the configuration:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">curl</span> <span class="f">-s</span> https://www.tua.es/rest/estimaciones/1234</span></code></pre></div>
+<p><strong>The API isn't official.</strong> It's public and needs no key, but it isn't documented, so it could change or disappear without notice. That's why it's isolated in a single module.</p>
+<h2>Why it's worth it</h2>
+<p>Making a Telegram bot is free, easy and quick. As a proof of concept it was great, and now the three of us use it to check the bus in a couple of taps.</p>
+<p>It works on any device: it's very rare for an old phone to be left without a working version of Telegram, and I can even use it from my PC with the desktop app or the web version.</p>
+<p>And since everything lives in a container and a couple of files, making changes and redeploying them takes minutes.</p>
+<p>I hope it helps you build that bot you've had in mind for ages and thought was really complicated. Far from it!</p></div>
+  <div class="visor" id="img-1" role="dialog" aria-label="miBusete&#39;s architecture: everything goes out from home, nothing comes in">
+  <img src="../../../assets/blog/ecf8f3b1a4ba43bc.svg" alt="miBusete&#39;s architecture: everything goes out from home, nothing comes in" loading="lazy">
+  <a class="visor-cerrar" href="#fig-1" aria-label="Close">×</a>
+<a class="visor-flecha der" href="#img-2" aria-label="Next">›</a><p class="visor-pie">miBusete's architecture: everything goes out from home, nothing comes in</p></div>
+<div class="visor" id="img-2" role="dialog" aria-label="The start menu: into town, home or the shopping centre">
+  <img src="../../../assets/blog/c9a1aefbb4fb42ad.webp" alt="The start menu: into town, home or the shopping centre" loading="lazy">
+  <a class="visor-cerrar" href="#fig-2" aria-label="Close">×</a>
+<a class="visor-flecha izq" href="#img-1" aria-label="Previous">‹</a><a class="visor-flecha der" href="#img-3" aria-label="Next">›</a><p class="visor-pie">The start menu: into town, home or the shopping centre</p></div>
+<div class="visor" id="img-3" role="dialog" aria-label="The list of stops for a direction, with the search for the nearest one">
+  <img src="../../../assets/blog/12af632a08d34954.webp" alt="The list of stops for a direction, with the search for the nearest one" loading="lazy">
+  <a class="visor-cerrar" href="#fig-3" aria-label="Close">×</a>
+<a class="visor-flecha izq" href="#img-2" aria-label="Previous">‹</a><a class="visor-flecha der" href="#img-4" aria-label="Next">›</a><p class="visor-pie">The list of stops for a direction, with the search for the nearest one</p></div>
+<div class="visor" id="img-4" role="dialog" aria-label="The nearest stop, with the distance, the times and the map link">
+  <img src="../../../assets/blog/a21eb16728e04f31.webp" alt="The nearest stop, with the distance, the times and the map link" loading="lazy">
+  <a class="visor-cerrar" href="#fig-4" aria-label="Close">×</a>
+<a class="visor-flecha izq" href="#img-3" aria-label="Previous">‹</a><p class="visor-pie">The nearest stop, with the distance, the times and the map link</p></div>
+
+
+  <nav class="vecinas" aria-label="More posts">
+<a class="vecina" href="../../../en/blog/another-monday-crossed-off/"><span class="muted pequeno">← Previous</span><span>Another Monday crossed off the calendar</span></a><a class="vecina derecha" href="../../../en/blog/mac-mini-cooling-stand/"><span class="muted pequeno">Next →</span><span>Mac mini cooling stand</span></a>  </nav>
+</article>
+      <footer class="pie">
+        <span>© 2026 Manuel Cernuda · www.manuelcernuda.net</span>
+        <span>
+<a href="../../../en/cookies/" data-cookies-abrir>Cookies</a> · <a href="../../../en/rss.xml">RSS</a>        </span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="cookies-capa" id="aviso-cookies" hidden>
+  <div class="aviso-cookies" role="dialog" aria-modal="true" aria-labelledby="aviso-cookies-texto" tabindex="-1">
+    <p id="aviso-cookies-texto">This site uses analytics cookies to know how many people visit it. May I use them?</p>
+    <div class="aviso-botones">
+      <button type="button" class="aviso-boton" data-cookies="si">Accept</button>
+      <button type="button" class="aviso-boton" data-cookies="no">Decline</button>
+    </div>
+    <p class="aviso-mas"><a href="../../../en/cookies/">More information</a></p>
+  </div>
+</div>
+</body>
+</html>

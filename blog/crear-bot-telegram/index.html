@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cómo crear un bot de Telegram · Manuel Cernuda</title>
+<meta name="description" content="Cómo creé miBusete, un bot de Telegram privado que dice cuánto le queda al autobús, sin base de datos ni puertos abiertos, y lo que aprendí por el camino.">
+<meta name="generator" content="webmaster 0.29.0">
+<meta name="theme-color" content="#0f1012">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Cómo crear un bot de Telegram · Manuel Cernuda">
+<meta property="og:description" content="Cómo creé miBusete, un bot de Telegram privado que dice cuánto le queda al autobús, sin base de datos ni puertos abiertos, y lo que aprendí por el camino.">
+<meta property="og:locale" content="es_ES">
+<meta property="og:url" content="https://www.manuelcernuda.net/blog/crear-bot-telegram/"><link rel="canonical" href="https://www.manuelcernuda.net/blog/crear-bot-telegram/"><meta property="og:image" content="https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"><link rel="icon" href="../../assets/img/favicon-bc57e299.webp" type="image/webp"><link rel="alternate" type="application/rss+xml" title="Manuel Cernuda · Blog" href="../../rss.xml"><link rel="alternate" hreflang="en" href="../../en/blog/create-telegram-bot/">
+<link rel="stylesheet" href="../../assets/style.css">
+<script>(function(){var h=document.documentElement;if(h.hasAttribute("data-pagina-cookies"))return;try{var d=JSON.parse(localStorage.getItem("consentimiento-cookies"));if(d&&(d.v==="si"||d.v==="no")&&Date.now()-d.t<31536000000)return}catch(e){}h.classList.add("cookies-pendiente")})();</script>
+<script src="../../assets/cookies.js" data-ga="G-S9NL9NGJ3G" data-dominio="www.manuelcernuda.net" data-si="Has aceptado las cookies de análisis." data-no="Has rechazado las cookies de análisis." data-nada="Todavía no has elegido." defer></script></head>
+<body>
+<a class="saltar" href="#contenido">Saltar al contenido</a>
+<div class="pagina">
+  <a class="idioma" href="../../en/blog/create-telegram-bot/" hreflang="en" lang="en" title="Read in English">
+<img src="../../assets/banderas/gb.svg" alt="Read in English" width="28" height="21">
+  </a>
+  <header class="lateral">
+    <svg class="lateral-puntos" aria-hidden="true" width="132" height="96" viewBox="0 0 132 96">
+      <g fill="#ffc93c"><circle cx="4" cy="4" r="2"/><circle cx="24" cy="4" r="2"/><circle cx="44" cy="4" r="2"/><circle cx="64" cy="4" r="2"/><circle cx="84" cy="4" r="2"/><circle cx="4" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="44" cy="24" r="2"/><circle cx="64" cy="24" r="2"/><circle cx="4" cy="44" r="2"/><circle cx="24" cy="44" r="2"/><circle cx="44" cy="44" r="2"/><circle cx="4" cy="64" r="2"/><circle cx="24" cy="64" r="2"/><circle cx="4" cy="84" r="2"/></g>
+    </svg>
+    <div class="identidad">
+      <a class="foto-marco" href="../../" aria-label="Inicio">
+        <svg class="foto-anillo" aria-hidden="true" viewBox="0 0 168 168"><circle cx="84" cy="84" r="81" fill="none" stroke="#ffc93c" stroke-width="1.5" stroke-dasharray="4 7"/><circle cx="150" cy="40" r="6" fill="#ffc93c"/></svg>
+<img class="foto" src="../../assets/img/foto-96dbea32.webp" alt="Foto de Manuel Cernuda" width="144" height="144" style="object-position: 50% 34%">
+      </a>
+      <a class="nombre" href="../../">Manuel Cernuda</a>
+      <span class="raya raya-centro" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Principal" class="menu">
+      <ul>
+        <li><a href="../../"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span>Inicio</span></a></li>
+        <li><a href="../../curriculum/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 13h18"/></svg><span>Currículum</span></a></li>
+        <li><a href="../../blog/" aria-current="page"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>Blog</span></a></li>
+        <li><a href="../../lectura/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span>Lectura</span></a></li>
+        <li><a href="../../cubos/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5z"/><path d="M3.5 7.25L12 12l8.5-4.75M12 12v9.5"/><path d="M7.75 4.9l8.5 4.75M16.25 4.9L7.75 9.65" stroke-opacity=".5"/></svg><span>Mis cubos de Rubik</span></a></li>
+        <li><a href="https://hobbits.manuelcernuda.net/" target="_blank" rel="noopener"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="15.5" width="16" height="4.5" rx="1"/><rect x="2.5" y="11" width="15" height="4.5" rx="1"/><rect x="6" y="6.5" width="14" height="4.5" rx="1"/><path d="M7.5 15.5v4.5M5.5 11v4.5M9 6.5v4.5"/></svg><span>Mis Hobbits</span><span class="externo" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span><span class="oculto"> (se abre en otra pestaña)</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <div class="ancho lectura-estrecha">
+<article class="articulo">
+  <p><a class="volver" href="../../blog/">← Volver al blog</a></p>
+  <header class="articulo-cabecera">
+    <p class="muted meta">
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><time datetime="2026-09-20">20 de septiembre de 2026</time></span>
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>9 min de lectura</span>
+    </p>
+    <h1>Cómo crear un bot de Telegram<span class="punto">.</span></h1>
+<div class="etiquetas"><a class="etiqueta" href="../../blog/categoria/tech/">Tech</a></div>  </header>
+  <div class="prosa cuerpo"><p>Mi hija tiene un iPhone 7 Plus heredado de su madre (que a su vez lo heredó de mí), y la aplicación oficial de los autobuses de Oviedo no le iba bien. Tardaba muchísimo en cargar y muchas veces daba error.</p>
+<p>Que tu hija adolescente, que empieza a moverse por el centro, no pueda saber rápido cuánto le queda al bus ni dónde cogerlo es un problema. Pero los padres tech usamos los problemas como excusa para trastear.</p>
+<p>En su día me hice <a href="https://github.com/manuelcernuda/TUAbble" rel="noopener" target="_blank">una aplicación para el reloj Pebble</a> (un smartwatch con pantalla de tinta electrónica) que usaba la API pública de la web de los autobuses urbanos. Resulta que la API sigue siendo la misma y sigue siendo pública. Allá vamos, pero... ¿cuál es la solución más rápida y que más valor aporta?</p>
+<h2>Un bot de Telegram</h2>
+<p>En casa no usamos WhatsApp para hablar entre nosotros, usamos Telegram, que permite crear bots. Como ya tenía el servidor con Docker encendido todo el día, me dije: ¿y si creo un bot privado y fácil de usar, al que le indiques si vas hacia el centro o hacia casa y te diga cuánto les queda a nuestras líneas en las paradas de siempre? ¿Y si además añado las de Parque Principado (el clásico centro comercial de las afueras al que van los adolescentes a pasar la tarde), para tenerlas a mano cuando vaya allí? ¿Y si además le busco la parada más cercana según su ubicación, por si tiene una más cerca que no conoce?</p>
+<p>A ello nos pusimos, y así nació miBusete. Se maneja solo con botones, sin escribir nada, y responde a una única pregunta: cuánto le queda al bus que me interesa, en minutos y con la hora estimada de llegada.</p>
+<h2>Cómo está montado</h2>
+<p>miBusete es un contenedor Docker con una aplicación en Node.js y la librería <a href="https://telegraf.js.org" rel="noopener" target="_blank">Telegraf</a>, que simplifica mucho hablar con Telegram. Son seis ficheros y unas 400 líneas en total. No tiene base de datos: todo lo que necesita (quién puede usarlo, qué paradas y qué líneas) vive en dos ficheros de configuración.</p>
+<figure id="fig-1"><a class="ampliar" href="#img-1" aria-label="Ampliar imagen: Arquitectura de miBusete: todo sale de casa, nada entra"><img loading="lazy" alt="Arquitectura de miBusete: todo sale de casa, nada entra" src="../../assets/blog/a44684aabe724768.svg" /></a><figcaption>Arquitectura de miBusete: todo sale de casa, nada entra</figcaption></figure>
+<p>La clave está en cómo recibe los mensajes. Un bot de Telegram puede funcionar de dos formas:</p>
+<ul>
+<li><strong>Webhook:</strong> Telegram llama a tu servidor cada vez que alguien pulsa un botón. Para eso tu servidor tiene que estar publicado en internet, con una URL y un certificado HTTPS, y hay que abrir un puerto en el router.</li>
+<li><strong>Polling:</strong> es el bot el que pregunta a Telegram cada poco si hay algo nuevo. Telegram guarda los mensajes hasta que el bot los recoge.</li>
+</ul>
+<p>Elegí polling. Todas las conexiones salen de casa hacia fuera (a Telegram y a la API de los autobuses), así que no hay nada mío expuesto: ni puertos abiertos, ni URL pública, ni certificados. Si mañana apago el contenedor, desde fuera no se nota nada más que el bot no contesta.</p>
+<p>La otra decisión importante fue no dejar que el bot hable directamente con la API de TUA (la empresa de autobuses). En medio hay un módulo, <code>busApi.js</code>, que traduce su respuesta a algo sencillo: línea, minutos y hora de llegada. Si un día la API cambia, solo hay que tocar ese fichero.</p>
+<h2>Crear el bot en Telegram</h2>
+<p>Los bots se crean desde el propio Telegram, hablando con otro bot:</p>
+<ol>
+<li>Abre una conversación con <code>@BotFather</code> y escribe <code>/newbot</code>.</li>
+<li>Elige un nombre visible y un nombre de usuario que termine en <code>bot</code>. Los cortos suelen estar cogidos, así que toca echarle imaginación.</li>
+<li>BotFather te devuelve un <strong>token</strong>. Guárdalo bien: quien lo tenga controla el bot.</li>
+<li>Si quieres, desde <code>/mybots</code> puedes añadirle descripción y foto.</li>
+</ol>
+<p>El token va en un fichero <code>.env</code>, fuera del código:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">TELEGRAM_BOT_TOKEN=coloca_aqui_el_token_de_botfather</span></code></pre></div>
+<p>Con eso ya se puede escribir el bot más sencillo posible. Primero, las dos dependencias:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">npm</span> install telegraf dotenv</span></code></pre></div>
+<p>Y un fichero <code>src/bot.js</code> que contesta a <code>/start</code>:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">javascript</span></div><pre><code><span class="l"><span class="f">require</span>(<span class="s">'dotenv'</span>).<span class="f">config</span>();</span><span class="l"><span class="c">const</span> { Telegraf } <span class="op">=</span> <span class="f">require</span>(<span class="s">'telegraf'</span>);</span><span class="l"> </span><span class="l"><span class="c">const</span> bot <span class="op">=</span> <span class="c">new</span> <span class="f">Telegraf</span>(process.env.TELEGRAM_BOT_TOKEN);</span><span class="l"> </span><span class="l">bot.<span class="f">start</span>((ctx) =&gt; ctx.<span class="f">reply</span>(<span class="s">'Hola, soy miBusete'</span>));</span><span class="l"> </span><span class="l">bot.<span class="f">launch</span>();</span><span class="l">console.<span class="f">log</span>(<span class="s">'miBusete arrancado (polling)'</span>);</span></code></pre></div>
+<p><code>bot.launch()</code> arranca el polling sin configurar nada más. Al lanzarlo con <code>node src/bot.js</code> (o en el contenedor), debería verse esto en el log:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">miBusete arrancado (polling)</span></code></pre></div>
+<p>Si le escribes <code>/start</code> desde Telegram, te contesta. A partir de aquí, todo es añadir botones.</p>
+<h2>Solo para la familia: la whitelist</h2>
+<p>Un bot de Telegram es público: cualquiera que dé con su nombre puede escribirle. Para que solo lo usemos en casa, todos los mensajes pasan antes por un filtro con la lista de usuarios permitidos. En Telegraf eso es un middleware, una función que se ejecuta antes que cualquier otra:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">javascript</span></div><pre><code><span class="l"><span class="c">function</span> <span class="f">crearWhitelistMiddleware</span>(whitelist) {</span><span class="l">  <span class="c">const</span> permitidos <span class="op">=</span> <span class="c">new</span> <span class="f">Set</span>(whitelist.<span class="f">map</span>(<span class="f">String</span>));</span><span class="l"> </span><span class="l">  <span class="c">return</span> (ctx, next) =&gt; {</span><span class="l">    <span class="c">const</span> userId <span class="op">=</span> <span class="f">String</span>(ctx.<span class="c">from</span><span class="op">?</span>.id <span class="op">||</span> <span class="s">''</span>);</span><span class="l"> </span><span class="l">    <span class="c">if</span> (<span class="op">!</span>permitidos.<span class="f">has</span>(userId)) {</span><span class="l">      console.<span class="f">warn</span>(<span class="s">`[whitelist] Acceso rechazado para userId=</span><span class="v">${</span>userId<span class="v">}</span><span class="s">`</span>);</span><span class="l">      <span class="c">return</span> ctx.<span class="f">reply</span>(<span class="s">'No tienes acceso a este bot.'</span>);</span><span class="l">    }</span><span class="l"> </span><span class="l">    <span class="c">return</span> <span class="f">next</span>();</span><span class="l">  };</span><span class="l">}</span><span class="l"> </span><span class="l">bot.<span class="f">use</span>(<span class="f">crearWhitelistMiddleware</span>(config.whitelist));</span></code></pre></div>
+<p>Si el usuario no está en la lista, el mensaje no llega a ningún botón ni comando. La lista está en <code>config.json</code>, junto a las paradas de cada dirección (los datos de este ejemplo son inventados):</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">json</span></div><pre><code><span class="l">{</span><span class="l">  <span class="c">"whitelist"</span>: [<span class="v">111111111</span>, <span class="v">222222222</span>],</span><span class="l">  <span class="c">"direcciones"</span>: {</span><span class="l">    <span class="c">"ida"</span>:    [{ <span class="c">"id"</span>: <span class="s">"1234"</span>, <span class="c">"nombre"</span>: <span class="s">"Parada de ejemplo"</span> }],</span><span class="l">    <span class="c">"vuelta"</span>: [{ <span class="c">"id"</span>: <span class="s">"5678"</span>, <span class="c">"nombre"</span>: <span class="s">"Otra parada"</span> }]</span><span class="l">  }</span><span class="l">}</span></code></pre></div>
+<p>Tu identificador de Telegram te lo da el bot <code>@userinfobot</code>. Y hay un truco cómodo: como el filtro escribe en el log el <code>userId</code> rechazado, si alguien nuevo le escribe al bot, su identificador aparece en los logs y basta con copiarlo a la lista.</p>
+<p><code>config.json</code> y <code>.env</code> no se suben nunca al repositorio. Están en el <code>.gitignore</code> y en su lugar se publican plantillas (<code>config.json.example</code> y <code>.env.example</code>):</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">node_modules/</span><span class="l">.env</span><span class="l">config.json</span></code></pre></div>
+<p>Antes del primer commit, un <code>git status</code> para comprobar que ninguno de los dos aparece en la lista.</p>
+<h2>La interfaz de navegación</h2>
+<figure id="fig-2" class="figura figura--derecha figura--grande"><a class="ampliar" href="#img-2" aria-label="Ampliar imagen: El menú de inicio: hacia el centro, hacia casa o al centro comercial"><img loading="lazy" alt="El menú de inicio: hacia el centro, hacia casa o al centro comercial" src="../../assets/blog/c9a1aefbb4fb42ad.webp" /></a><figcaption>El menú de inicio: hacia el centro, hacia casa o al centro comercial</figcaption></figure>
+<p>El bot tiene cuatro pantallas: elegir dirección (hacia el centro, hacia casa o al centro comercial), la lista de paradas de esa dirección, el detalle de una parada con lo que le queda a cada línea y, por último, la parada más cercana. En el detalle hay un botón para refrescar y otro para volver.</p>
+<p>Lo curioso es que el bot no recuerda nada entre pulsaciones. Cada botón lleva escrito dentro lo que significa, en un campo llamado <code>callback_data</code>:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">direccion:ida</span><span class="l">parada:ida:1234</span><span class="l">refrescar:ida:1234</span></code></pre></div>
+<p>Cuando pulsas "Refrescar", el botón ya dice qué dirección y qué parada estabas mirando, así que el bot no necesita sesiones ni base de datos. Captura cada tipo de botón con una expresión regular (<code>bot.action(/^parada:(...):(.+)$/)</code>) y listo.</p>
+<figure id="fig-3" class="figura figura--izquierda"><a class="ampliar" href="#img-3" aria-label="Ampliar imagen: La lista de paradas de una dirección, con la búsqueda de la más cercana"><img loading="lazy" alt="La lista de paradas de una dirección, con la búsqueda de la más cercana" src="../../assets/blog/12af632a08d34954.webp" /></a><figcaption>La lista de paradas de una dirección, con la búsqueda de la más cercana</figcaption></figure>
+<p>La API de TUA es lenta (tarda varios segundos), y eso se nota. Por eso el bot contesta al momento con un "Consultando..." y después <strong>edita ese mismo mensaje</strong> con el resultado. El usuario ve que algo pasa, el chat no se llena de mensajes repetidos al refrescar y, si algo falla, el error aparece ahí mismo en lugar de dejar un "Consultando..." eterno.</p>
+<p>Además, esto esquiva un error clásico de Telegram: si intentas editar un mensaje con exactamente el mismo texto que ya tiene (al refrescar dos veces seguidas, los minutos no han cambiado), Telegram lo rechaza con <code>message is not modified</code>. Al pasar siempre por "Actualizando...", el texto siempre cambia.</p>
+<h2>¿Cuál tengo más cerca?</h2>
+<p>Dentro de cada dirección hay un botón para buscar la parada más cercana. Al pulsarlo, el bot muestra el botón nativo de Telegram para compartir la ubicación y, con las coordenadas, calcula la distancia a todas las paradas de esa dirección con la fórmula de Haversine (la distancia entre dos puntos sobre una esfera):</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">javascript</span></div><pre><code><span class="l"><span class="c">function</span> <span class="f">distanciaMetros</span>(lat1, lng1, lat2, lng2) {</span><span class="l">  <span class="c">const</span> dLat <span class="op">=</span> <span class="f">rad</span>(lat2 <span class="op">-</span> lat1);</span><span class="l">  <span class="c">const</span> dLng <span class="op">=</span> <span class="f">rad</span>(lng2 <span class="op">-</span> lng1);</span><span class="l">  <span class="c">const</span> a <span class="op">=</span> <span class="f">Math</span>.<span class="f">sin</span>(dLat <span class="op">/</span> <span class="v">2</span>) <span class="op">**</span> <span class="v">2</span> <span class="op">+</span></span><span class="l">            <span class="f">Math</span>.<span class="f">cos</span>(<span class="f">rad</span>(lat1)) <span class="op">*</span> <span class="f">Math</span>.<span class="f">cos</span>(<span class="f">rad</span>(lat2)) <span class="op">*</span> <span class="f">Math</span>.<span class="f">sin</span>(dLng <span class="op">/</span> <span class="v">2</span>) <span class="op">**</span> <span class="v">2</span>;</span><span class="l">  <span class="c">return</span> <span class="v">6371000</span> <span class="op">*</span> <span class="v">2</span> <span class="op">*</span> <span class="f">Math</span>.<span class="f">atan2</span>(<span class="f">Math</span>.<span class="f">sqrt</span>(a), <span class="f">Math</span>.<span class="f">sqrt</span>(<span class="v">1</span> <span class="op">-</span> a));</span><span class="l">}</span></code></pre></div>
+<figure id="fig-4" class="figura figura--derecha"><a class="ampliar" href="#img-4" aria-label="Ampliar imagen: La parada más cercana, con la distancia, los tiempos y el enlace al mapa"><img loading="lazy" alt="La parada más cercana, con la distancia, los tiempos y el enlace al mapa" src="../../assets/blog/a21eb16728e04f31.webp" /></a><figcaption>La parada más cercana, con la distancia, los tiempos y el enlace al mapa</figcaption></figure>
+<p>Con unas 80 paradas por dirección, recorrerlas todas es instantáneo. No hace falta ninguna API de mapas. El resultado incluye la distancia, los tiempos de esa parada y un enlace a Google Maps para llegar andando.</p>
+<p>Aquí sí hay una pequeña excepción a lo de no guardar nada: el mensaje con la ubicación llega sin el <code>callback_data</code> del botón anterior, así que el bot apunta en memoria qué dirección pidió ese chat y lo borra en cuanto la usa.</p>
+<p>Lo más entretenido fue conseguir las coordenadas, porque la API no las da. Resulta que la web de TUA dibuja un mapa por línea, y en el código fuente de cada página están las paradas con su latitud y longitud. Bastó con guardar el HTML desde el navegador, extraerlas con un pequeño script, clasificarlas por dirección y quitar duplicados. A veces los datos que necesitas ya están en la web, aunque no haya API.</p>
+<h2>Cosas a tener en cuenta</h2>
+<p><strong>Un error silencioso parece un cuelgue.</strong> Durante unos días, buscar la parada más cercana dejaba el bot en "Buscando..." para siempre. No era la API: los logs del contenedor (<code>docker logs</code>) mostraban <code>400: Bad Request: message can't be edited</code>. El mensaje se había enviado con un teclado de un tipo y luego se intentaba editar con otro. Quitarlo lo arregló, pero lo que de verdad lo hacía difícil era que el error se tragaba en silencio. Desde entonces, todo fallo va al log y al propio chat.</p>
+<p><strong>Un filtro de texto exacto falla sin avisar.</strong> Para no mostrar líneas que no interesan, el bot compara el destino de cada bus con una lista de destinos permitidos, letra a letra. Al reorganizar esa lista coloqué los destinos de una línea en el sentido contrario, y el bot empezó a decir "Sin servicio" en casi todas las paradas. Sin errores, solo resultados vacíos. Lo resolví mirando la respuesta real de la API y comparándola con la configuración:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">curl</span> <span class="f">-s</span> https://www.tua.es/rest/estimaciones/1234</span></code></pre></div>
+<p><strong>La API no es oficial.</strong> Es pública y no pide clave, pero no está documentada, así que puede cambiar o desaparecer sin aviso. Por eso está aislada en un único módulo.</p>
+<h2>Por qué compensa</h2>
+<p>Hacer un bot de Telegram es gratis, fácil y rápido. Como prueba de concepto fue genial, y ahora lo usamos los tres para consultar el bus en un par de toques.</p>
+<p>Funciona en cualquier dispositivo: es muy raro que un teléfono viejo se quede sin una versión de Telegram que funcione, e incluso puedo usarlo desde el PC con la aplicación de escritorio o la web.</p>
+<p>Y como todo vive en un contenedor y un par de ficheros, hacer cambios y volver a desplegarlos es cuestión de minutos.</p>
+<p>Espero que te sirva para crear ese bot que tenías en mente desde hace tiempo y que pensabas que era algo súper complicado. ¡Nada más lejos!</p></div>
+  <div class="visor" id="img-1" role="dialog" aria-label="Arquitectura de miBusete: todo sale de casa, nada entra">
+  <img src="../../assets/blog/a44684aabe724768.svg" alt="Arquitectura de miBusete: todo sale de casa, nada entra" loading="lazy">
+  <a class="visor-cerrar" href="#fig-1" aria-label="Cerrar">×</a>
+<a class="visor-flecha der" href="#img-2" aria-label="Siguiente">›</a><p class="visor-pie">Arquitectura de miBusete: todo sale de casa, nada entra</p></div>
+<div class="visor" id="img-2" role="dialog" aria-label="El menú de inicio: hacia el centro, hacia casa o al centro comercial">
+  <img src="../../assets/blog/c9a1aefbb4fb42ad.webp" alt="El menú de inicio: hacia el centro, hacia casa o al centro comercial" loading="lazy">
+  <a class="visor-cerrar" href="#fig-2" aria-label="Cerrar">×</a>
+<a class="visor-flecha izq" href="#img-1" aria-label="Anterior">‹</a><a class="visor-flecha der" href="#img-3" aria-label="Siguiente">›</a><p class="visor-pie">El menú de inicio: hacia el centro, hacia casa o al centro comercial</p></div>
+<div class="visor" id="img-3" role="dialog" aria-label="La lista de paradas de una dirección, con la búsqueda de la más cercana">
+  <img src="../../assets/blog/12af632a08d34954.webp" alt="La lista de paradas de una dirección, con la búsqueda de la más cercana" loading="lazy">
+  <a class="visor-cerrar" href="#fig-3" aria-label="Cerrar">×</a>
+<a class="visor-flecha izq" href="#img-2" aria-label="Anterior">‹</a><a class="visor-flecha der" href="#img-4" aria-label="Siguiente">›</a><p class="visor-pie">La lista de paradas de una dirección, con la búsqueda de la más cercana</p></div>
+<div class="visor" id="img-4" role="dialog" aria-label="La parada más cercana, con la distancia, los tiempos y el enlace al mapa">
+  <img src="../../assets/blog/a21eb16728e04f31.webp" alt="La parada más cercana, con la distancia, los tiempos y el enlace al mapa" loading="lazy">
+  <a class="visor-cerrar" href="#fig-4" aria-label="Cerrar">×</a>
+<a class="visor-flecha izq" href="#img-3" aria-label="Anterior">‹</a><p class="visor-pie">La parada más cercana, con la distancia, los tiempos y el enlace al mapa</p></div>
+
+
+  <nav class="vecinas" aria-label="Otras entradas">
+<a class="vecina" href="../../blog/otro-lunes-tachado-del-calendario/"><span class="muted pequeno">← Anterior</span><span>Otro lunes tachado del calendario</span></a><a class="vecina derecha" href="../../blog/base-refrigeradora-mac-mini/"><span class="muted pequeno">Siguiente →</span><span>Base refrigeradora para el viejo Mac Mini</span></a>  </nav>
+</article>
+      <footer class="pie">
+        <span>© 2026 Manuel Cernuda · www.manuelcernuda.net</span>
+        <span>
+<a href="../../cookies/" data-cookies-abrir>Cookies</a> · <a href="../../rss.xml">RSS</a>        </span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="cookies-capa" id="aviso-cookies" hidden>
+  <div class="aviso-cookies" role="dialog" aria-modal="true" aria-labelledby="aviso-cookies-texto" tabindex="-1">
+    <p id="aviso-cookies-texto">Esta web usa cookies de análisis para saber cuánta gente la visita. ¿Me dejas usarlas?</p>
+    <div class="aviso-botones">
+      <button type="button" class="aviso-boton" data-cookies="si">Aceptar</button>
+      <button type="button" class="aviso-boton" data-cookies="no">Rechazar</button>
+    </div>
+    <p class="aviso-mas"><a href="../../cookies/">Más información</a></p>
+  </div>
+</div>
+</body>
+</html>

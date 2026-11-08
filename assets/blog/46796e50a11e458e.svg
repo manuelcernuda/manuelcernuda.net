@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 580" width="1200" height="580" font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <rect width="1200" height="580" fill="#111418" />
+
+  
+  <rect x="30" y="30" width="1140" height="300" rx="18" fill="#14171c" stroke="#2c333d" stroke-width="2" />
+  <text x="56" y="66" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">CPU MEDIA · ÚLTIMOS 2 MIN</text>
+
+  
+  <line x1="100" y1="290" x2="1140" y2="290" stroke="#2c333d" stroke-width="1.5" />
+  <text x="88" y="115" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="end">100 %</text>
+  <text x="88" y="294" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="end">0 %</text>
+  <text x="1140" y="314" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="end">tiempo →</text>
+
+  
+  <line x1="100" y1="146" x2="1140" y2="146" stroke="#8b93a1" stroke-width="1.5" stroke-dasharray="6 6" />
+  <text x="1140" y="138" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="end">umbral 80 %</text>
+
+  
+  <line x1="240" y1="100" x2="240" y2="394" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+  <line x1="520" y1="100" x2="520" y2="394" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+  <line x1="800" y1="100" x2="800" y2="394" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+
+  
+  <path d="M100,272 L210,270 C226,270 230,112 250,112 L620,112 C640,112 646,272 666,272 L1140,272" fill="none" stroke="#f2c94c" stroke-width="3" stroke-linejoin="round" />
+  <text x="380" y="100" fill="#a9b0bc" font-size="14" text-anchor="middle">Carga larga (por ejemplo, indexar fotos)</text>
+
+  
+  <rect x="30" y="350" width="1140" height="160" rx="18" fill="#161a20" stroke="#f2c94c" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="8 8" />
+  <text x="56" y="386" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">VENTILADOR</text>
+
+  <text x="170" y="430" fill="#8b93a1" font-size="15" text-anchor="middle">Apagado</text>
+
+  <rect x="242" y="400" width="274" height="50" rx="12" fill="#1d222a" stroke="#f2c94c" stroke-opacity="0.35" stroke-width="1.5" />
+  <text x="379" y="431" fill="#eef0f3" font-size="15" text-anchor="middle">Ventana de 10 min</text>
+
+  <rect x="524" y="400" width="274" height="50" rx="12" fill="#1d222a" stroke="#f2c94c" stroke-opacity="0.35" stroke-width="1.5" />
+  <text x="661" y="431" fill="#eef0f3" font-size="15" text-anchor="middle">Renovada: otros 10 min</text>
+
+  <text x="970" y="430" fill="#8b93a1" font-size="15" text-anchor="middle">Apagado</text>
+
+  
+  <circle cx="240" cy="478" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="240" y="483" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">1</text>
+  <text x="264" y="484" fill="#a9b0bc" font-size="14">Pasa del umbral: enciende</text>
+
+  
+  <circle cx="520" cy="478" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="520" y="483" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">2</text>
+  <text x="544" y="484" fill="#a9b0bc" font-size="14">Sigue alta: otros 10 min</text>
+
+  
+  <circle cx="800" cy="478" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="800" y="483" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">3</text>
+  <text x="824" y="484" fill="#a9b0bc" font-size="14">Ya ha bajado: apaga</text>
+
+  <text x="600" y="552" fill="#a9b0bc" font-size="16" text-anchor="middle">Sin nadie delante: cada 10 minutos, la CPU decide si el ventilador sigue o descansa.</text>
+</svg>

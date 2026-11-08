@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>A fan that switches itself on · Manuel Cernuda</title>
+<meta name="description" content="How I made my server&#39;s fan switch on only when the CPU is working, with a Tuya wifi relay controlled locally and a small container that queries Prometheus.">
+<meta name="generator" content="webmaster 0.29.0">
+<meta name="theme-color" content="#0f1012">
+<meta property="og:type" content="website">
+<meta property="og:title" content="A fan that switches itself on · Manuel Cernuda">
+<meta property="og:description" content="How I made my server&#39;s fan switch on only when the CPU is working, with a Tuya wifi relay controlled locally and a small container that queries Prometheus.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://www.manuelcernuda.net/en/blog/fan-that-switches-itself-on/"><link rel="canonical" href="https://www.manuelcernuda.net/en/blog/fan-that-switches-itself-on/"><meta property="og:image" content="https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"><link rel="icon" href="../../../assets/img/favicon-bc57e299.webp" type="image/webp"><link rel="alternate" type="application/rss+xml" title="Manuel Cernuda · Blog" href="../../../en/rss.xml"><link rel="alternate" hreflang="es" href="../../../blog/ventilador-que-se-enciende-solo/">
+<link rel="stylesheet" href="../../../assets/style.css">
+<script>(function(){var h=document.documentElement;if(h.hasAttribute("data-pagina-cookies"))return;try{var d=JSON.parse(localStorage.getItem("consentimiento-cookies"));if(d&&(d.v==="si"||d.v==="no")&&Date.now()-d.t<31536000000)return}catch(e){}h.classList.add("cookies-pendiente")})();</script>
+<script src="../../../assets/cookies.js" data-ga="G-S9NL9NGJ3G" data-dominio="www.manuelcernuda.net" data-si="You have accepted analytics cookies." data-no="You have declined analytics cookies." data-nada="You have not chosen yet." defer></script></head>
+<body>
+<a class="saltar" href="#contenido">Skip to content</a>
+<div class="pagina">
+  <a class="idioma" href="../../../blog/ventilador-que-se-enciende-solo/" hreflang="es" lang="es" title="Leer en español">
+<img src="../../../assets/banderas/es.svg" alt="Leer en español" width="28" height="21">
+  </a>
+  <header class="lateral">
+    <svg class="lateral-puntos" aria-hidden="true" width="132" height="96" viewBox="0 0 132 96">
+      <g fill="#ffc93c"><circle cx="4" cy="4" r="2"/><circle cx="24" cy="4" r="2"/><circle cx="44" cy="4" r="2"/><circle cx="64" cy="4" r="2"/><circle cx="84" cy="4" r="2"/><circle cx="4" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="44" cy="24" r="2"/><circle cx="64" cy="24" r="2"/><circle cx="4" cy="44" r="2"/><circle cx="24" cy="44" r="2"/><circle cx="44" cy="44" r="2"/><circle cx="4" cy="64" r="2"/><circle cx="24" cy="64" r="2"/><circle cx="4" cy="84" r="2"/></g>
+    </svg>
+    <div class="identidad">
+      <a class="foto-marco" href="../../../en/" aria-label="Home">
+        <svg class="foto-anillo" aria-hidden="true" viewBox="0 0 168 168"><circle cx="84" cy="84" r="81" fill="none" stroke="#ffc93c" stroke-width="1.5" stroke-dasharray="4 7"/><circle cx="150" cy="40" r="6" fill="#ffc93c"/></svg>
+<img class="foto" src="../../../assets/img/foto-96dbea32.webp" alt="Photo of Manuel Cernuda" width="144" height="144" style="object-position: 50% 34%">
+      </a>
+      <a class="nombre" href="../../../en/">Manuel Cernuda</a>
+      <span class="raya raya-centro" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Main" class="menu">
+      <ul>
+        <li><a href="../../../en/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span>Home</span></a></li>
+        <li><a href="../../../en/resume/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 13h18"/></svg><span>Résumé</span></a></li>
+        <li><a href="../../../en/blog/" aria-current="page"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>Blog</span></a></li>
+        <li><a href="../../../en/reading/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span>Reading</span></a></li>
+        <li><a href="../../../en/cubes/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5z"/><path d="M3.5 7.25L12 12l8.5-4.75M12 12v9.5"/><path d="M7.75 4.9l8.5 4.75M16.25 4.9L7.75 9.65" stroke-opacity=".5"/></svg><span>My Rubik&#39;s Cubes</span></a></li>
+        <li><a href="https://hobbits.manuelcernuda.net/" target="_blank" rel="noopener"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="15.5" width="16" height="4.5" rx="1"/><rect x="2.5" y="11" width="15" height="4.5" rx="1"/><rect x="6" y="6.5" width="14" height="4.5" rx="1"/><path d="M7.5 15.5v4.5M5.5 11v4.5M9 6.5v4.5"/></svg><span>My Hobbits</span><span class="externo" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span><span class="oculto"> (opens in a new tab)</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <div class="ancho lectura-estrecha">
+<article class="articulo">
+  <p><a class="volver" href="../../../en/blog/">← Back to the blog</a></p>
+  <header class="articulo-cabecera">
+    <p class="muted meta">
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><time datetime="2026-10-04">4 October 2026</time></span>
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>9 min read</span>
+    </p>
+    <h1>A fan that switches itself on<span class="punto">.</span></h1>
+<div class="etiquetas"><a class="etiqueta" href="../../../en/blog/category/tech/">Tech</a></div>  </header>
+  <div class="prosa cuerpo"><p>In <a href="../mac-mini-cooling-stand/">part one</a> I explained how I rescued a 2012 Mac Mini to turn it into my home server and how, when it started overheating with the photo gallery, I designed a custom stand for it with an 80 mm USB fan underneath. This second part covers what was missing: making the fan switch itself on only when it's needed.</p>
+<h2>Switching it on only when needed: the Evercooler project</h2>
+<p>With the fan fitted under the Mac Mini, I still had to decide when it spins. Leaving it on all the time is the easy option, but the server is quiet most of the day and only heats up at specific moments (in my case, mostly when the photo gallery starts indexing). I wanted the fan to come on only when the Mac Mini starts working hard and to switch off when it's done, without me having to remember anything.</p>
+<h2>The dilemma</h2>
+<p>My first idea was a smart plug with its app, but that's a remote switch, not automation. I'd still be the one deciding when to turn it on.</p>
+<p>The second was to set it all up in Home Assistant. It works, but I don't run it on the server, and setting up a whole platform for a single fan felt like using a sledgehammer to crack a nut.</p>
+<p>I also wasn't sure what to measure. Temperature is the intuitive choice, but there's a catch: when the fan cools the machine down, the temperature drops, the system decides to switch it off while the load is still running, and it heats up again. The CPU doesn't depend on the fan, so it doesn't fool itself. It also gives earlier warning: when the CPU goes up, the heat hasn't arrived yet.</p>
+<h2>The middle ground</h2>
+<p><a href="https://www.amazon.es/dp/B086HRPXHH" rel="noopener" target="_blank">A USB wifi relay</a> between the Mac Mini's port and the fan cable, without stripping a single wire, and a small container that controls it. I've called it <strong>evercooler</strong>. Every 30 seconds it asks Prometheus how the CPU is doing and, if needed, switches the relay on directly over the home network.</p>
+<p>The key is that the relay belongs to the Tuya family (the ones you control with the <em>Smart Life</em> app), and those devices can be controlled locally, without going through their cloud, if you know their encryption key. Getting that key is the tedious part, but you only have to do it once.</p>
+<h2>How the flow works</h2>
+<figure id="fig-1"><a class="ampliar" href="#img-1" aria-label="Enlarge image: From the CPU to the fan without leaving home"><img loading="lazy" alt="From the CPU to the fan without leaving home" src="../../../assets/blog/2cc35da9a055448d.svg" /></a><figcaption>From the CPU to the fan without leaving home</figcaption></figure>
+<p>Prometheus was already monitoring the server with node-exporter, and Grafana showed it to me in dashboards. Evercooler only has to read that figure, decide and give the relay its orders. The Tuya cloud appears off to one side because it was only needed to pair the relay and get the key. Day to day, nothing leaves home.</p>
+<h2>Getting the relay's key</h2>
+<p>First, the usual: pair the relay with the <em>Smart Life</em> app (on a 2.4 GHz wifi network) like any smart plug. That's enough to use it from your phone, but to talk to it from a program you need three things: its ID, its IP and its local key. The key doesn't appear in the app. It's generated during pairing, and the only official way to read it is the Tuya API, which requires a developer account.</p>
+<p>Tuya's developer site (<a href="https://platform.tuya.com" rel="noopener" target="_blank">Tuya Developer Platform</a>) is free, but not exactly friendly. Mine came up entirely in Chinese and I had to hunt for the language selector to switch it to English. These were the steps:</p>
+<ol>
+<li>Sign up choosing <strong>Spain</strong> as the country. If the account ends up in the Chinese data centre, it won't see European devices later.</li>
+<li>Go to <em>Cloud → Development → Create Cloud Project</em> and create a <em>Smart Home</em> project, with the <em>Central Europe Data Center</em>.</li>
+<li>Accept the APIs it suggests by default.</li>
+<li>Inside the project, go to <em>Devices → Link App Account</em> and scan the QR code from the <em>Smart Life</em> app itself (<em>Me</em> tab, scan icon). That way the project can see the account's devices.</li>
+<li>In <em>Overview</em>, note down the <em>Access ID</em> and the <em>Access Secret</em>.</li>
+</ol>
+<p>That's where <a href="https://github.com/jasonacox/tinytuya" rel="noopener" target="_blank">tinytuya</a> comes in, a Python library with a wizard to download the keys. To avoid installing anything on the server, I run it in a throwaway container:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">docker</span> run <span class="f">--rm</span> <span class="f">-it</span> <span class="f">--network</span> host <span class="f">-v</span> <span class="s">"$PWD"</span>:/work <span class="f">-w</span> /work \</span><span class="l">  python:3.12-slim sh <span class="f">-c</span> <span class="s">"pip install -q tinytuya &amp;&amp; python -m tinytuya wizard"</span></span></code></pre></div>
+<p>The wizard asks for the <em>Access ID</em> (it calls it <em>API Key</em>), the <em>Access Secret</em>, the ID of any device and the region (<code>eu</code>). It then offers to download the names of each device's data points and to look for them on the local network. Say yes to everything. At the end it shows something like this:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">Polling local devices...</span><span class="l">    [Ventilador               ] 192.168.1.50       - [On]  - DPS: {'1': True, '9': 0, '38': 'memory'}</span></code></pre></div>
+<p>That's everything you need: the IP, the fact that the relay responds, and its state. The numbers are the device's "data points". <code>1</code> is the switch, <code>9</code> a countdown I don't use and <code>38</code> what the relay does when the power comes back. Tuya's documentation says this last one takes <code>0</code>, <code>1</code> or <code>2</code>, but my relay uses <code>off</code>, <code>on</code> and <code>memory</code>. I set it to <code>on</code>, for a reason I explain further down.</p>
+<p>The wizard saves the IDs and keys in some JSON files in the folder you run it from. <strong>Careful: it brings the keys for every device on the account</strong>, not just the relay. Those files are stored with restrictive permissions and never pushed to any repository.</p>
+<h2>Testing the relay from a program</h2>
+<p>With the key in hand, controlling the relay takes four lines. An example with made-up data:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">python</span></div><pre><code><span class="l"><span class="c">import</span> <span class="f">tinytuya</span></span><span class="l"> </span><span class="l">rele <span class="op">=</span> tinytuya<span class="op">.</span><span class="f">OutletDevice</span>(<span class="s">"ID_DEL_RELE"</span>, <span class="s">"192.168.1.50"</span>, <span class="s">"CLAVE_LOCAL"</span>)</span><span class="l">rele<span class="op">.</span><span class="f">set_version</span>(<span class="v">3.5</span>)</span><span class="l"> </span><span class="l"><span class="f">print</span>(rele<span class="op">.</span><span class="f">status</span>())</span><span class="l">rele<span class="op">.</span><span class="f">turn_off</span>()</span></code></pre></div>
+<p>You should see something like this, and the fan stops:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">{'dps': {'1': True, '9': 0, '38': 'on'}}</span></code></pre></div>
+<p>The protocol version (<code>3.5</code> in my case) is also given by the wizard. If it doesn't match, the relay won't answer.</p>
+<h2>Where the CPU figure comes from</h2>
+<p>Evercooler needs nothing beyond what was already there: it asks the Prometheus API for the average CPU usage over the last two minutes.</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">promql</span></div><pre><code><span class="l"><span class="v">100</span> <span class="op">-</span> <span class="c">avg</span><span class="op">(</span><span class="c">rate</span><span class="op">(</span><span class="v">node_cpu_seconds_total</span>{<span class="v">mode</span><span class="op">=</span>"<span class="s">idle</span>"}[<span class="s">2m</span>]<span class="op">))</span> <span class="op">*</span> <span class="v">100</span></span></code></pre></div>
+<p>The query measures how much of the time the cores haven't been idle and turns it into a percentage. The two-minute average filters out spikes of a few seconds, which don't heat anything up.</p>
+<p>To choose the threshold, before writing a single line of code I looked at what had happened over the previous two weeks. The load turned out to be very black and white: half the time the CPU was below 11 %, and when it went up, it shot to almost 100 % for about half an hour, roughly three times a day. With that profile, the exact threshold hardly matters. I went with 80 %.</p>
+<h2>Ten-minute windows</h2>
+<p>What I didn't want was a fan switching on and off every 30 seconds following the CPU. So the logic works in windows:</p>
+<ol>
+<li>If the CPU goes over 80 %, it switches the fan on and opens a 10-minute window.</li>
+<li>During the window it doesn't decide again: the fan spins no matter what.</li>
+<li>When the window ends, it checks again. If the CPU is still high, another 10-minute window. If it has dropped, it switches off.</li>
+</ol>
+<figure id="fig-2"><a class="ampliar" href="#img-2" aria-label="Enlarge image: The fan follows the load in ten-minute stretches"><img loading="lazy" alt="The fan follows the load in ten-minute stretches" src="../../../assets/blog/46796e50a11e458e.svg" /></a><figcaption>The fan follows the load in ten-minute stretches</figcaption></figure>
+<p>In practice, the fan stays on for the whole load and then gives one last pass while the machine cools down. Nobody has to touch anything.</p>
+<p>The heart of the program, simplified:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">python</span></div><pre><code><span class="l"><span class="c">import</span> <span class="f">time</span></span><span class="l"><span class="c">import</span> <span class="f">requests</span></span><span class="l"> </span><span class="l"><span class="k"># rele is the same OutletDevice as in the previous example</span></span><span class="l"> </span><span class="l">UMBRAL <span class="op">=</span> <span class="v">80</span></span><span class="l">VENTANA <span class="op">=</span> <span class="v">10</span> <span class="op">*</span> <span class="v">60</span></span><span class="l">CONSULTA <span class="op">=</span> <span class="s">'100 - avg(rate(node_cpu_seconds_total{mode="idle"}[2m])) * 100'</span></span><span class="l"> </span><span class="l"><span class="c">def</span> <span class="f">leer_cpu</span>():</span><span class="l">    r <span class="op">=</span> requests<span class="op">.</span><span class="f">get</span>(<span class="s">"http://prometheus:9090/api/v1/query"</span>, params<span class="op">=</span>{<span class="s">"query"</span>: CONSULTA})</span><span class="l">    <span class="c">return</span> <span class="f">float</span>(r<span class="op">.</span><span class="f">json</span>()[<span class="s">"data"</span>][<span class="s">"result"</span>][<span class="v">0</span>][<span class="s">"value"</span>][<span class="v">1</span>])</span><span class="l"> </span><span class="l">encendido <span class="op">=</span> <span class="v">False</span></span><span class="l">fin_ventana <span class="op">=</span> <span class="v">0</span></span><span class="l"> </span><span class="l"><span class="c">while</span> <span class="v">True</span>:</span><span class="l">    cpu <span class="op">=</span> <span class="f">leer_cpu</span>()</span><span class="l">    ahora <span class="op">=</span> time<span class="op">.</span><span class="f">time</span>()</span><span class="l"> </span><span class="l">    <span class="c">if</span> <span class="c">not</span> encendido <span class="c">and</span> cpu <span class="op">&gt;=</span> UMBRAL:</span><span class="l">        rele<span class="op">.</span><span class="f">turn_on</span>()</span><span class="l">        encendido, fin_ventana <span class="op">=</span> <span class="v">True</span>, ahora <span class="op">+</span> VENTANA</span><span class="l"> </span><span class="l">    <span class="c">elif</span> encendido <span class="c">and</span> ahora <span class="op">&gt;=</span> fin_ventana:</span><span class="l">        <span class="c">if</span> cpu <span class="op">&gt;=</span> UMBRAL:</span><span class="l">            fin_ventana <span class="op">=</span> ahora <span class="op">+</span> VENTANA</span><span class="l">        <span class="c">else</span>:</span><span class="l">            rele<span class="op">.</span><span class="f">turn_off</span>()</span><span class="l">            encendido <span class="op">=</span> <span class="v">False</span></span><span class="l"> </span><span class="l">    time<span class="op">.</span><span class="f">sleep</span>(<span class="v">30</span>)</span></code></pre></div>
+<p>The real version does a bit more: it reads the relay's state on every loop (in case someone has touched it from the app) and exposes its own metrics so that Prometheus keeps an eye on it too. But that's the idea.</p>
+<h2>Things to bear in mind</h2>
+<p><strong>If something fails, better on than off.</strong> A 5 V fan spinning more than it needs to does no harm. A server without ventilation under full load does. That's why, if Prometheus stops responding, evercooler switches the fan on. If I stop the container, it switches it on before exiting. And the relay is set to start up switched on when the power comes back (data point <code>38</code> set to <code>on</code>). That's also why I don't use the relay's built-in countdown, because it would do the opposite: if the program crashed, the fan would end up off.</p>
+<p><strong>Manual changes are respected.</strong> If I switch it on from the app, evercooler notices and gives it its 10 minutes. If I switch it off while the CPU is high, it switches it back on.</p>
+<p><strong>The relay still talks to the cloud.</strong> Even though evercooler doesn't use it, the relay keeps its connection to Tuya's servers, which is how the app's orders reach it. Looking at the DNS queries in Pi-hole, only Tuya domains show up, and very rarely, but it's worth knowing. If you want to cut it off completely, you can block that traffic or replace the relay's firmware with an open one, although that's a whole other story.</p>
+<p><strong>It keeps working without internet.</strong> Control goes over the local network, so a fibre outage doesn't leave it brainless. The only thing you can't do without a connection is use the phone app.</p>
+<p><strong>You don't need the developer account afterwards.</strong> As soon as I had the key, I unlinked the app and deleted the project from the Tuya platform. The key still works because it lives in the relay, not in the project, and that way there's no API access left open to all my devices. The downside is that if I ever pair the relay again, the key changes and I'll have to repeat the process.</p>
+<h2>Why I like it</h2>
+<p>Now the Mac Mini works in peace, the fan only shows up when it's needed and I've forgotten it even exists, which is the best compliment you can pay an automation.</p>
+<p>None of this would have been so easy without <a href="https://github.com/jasonacox/tinytuya" rel="noopener" target="_blank">tinytuya</a>, so thanks to the people who maintain it, for the love of it, so that the rest of us can control these devices locally.</p>
+<p>Thanks for joining me through both parts of this summer of tinkering. If you fancy building something similar, let me know on social media, I'd love to see it.</p></div>
+  <div class="visor" id="img-1" role="dialog" aria-label="From the CPU to the fan without leaving home">
+  <img src="../../../assets/blog/2cc35da9a055448d.svg" alt="From the CPU to the fan without leaving home" loading="lazy">
+  <a class="visor-cerrar" href="#fig-1" aria-label="Close">×</a>
+<a class="visor-flecha der" href="#img-2" aria-label="Next">›</a><p class="visor-pie">From the CPU to the fan without leaving home</p></div>
+<div class="visor" id="img-2" role="dialog" aria-label="The fan follows the load in ten-minute stretches">
+  <img src="../../../assets/blog/46796e50a11e458e.svg" alt="The fan follows the load in ten-minute stretches" loading="lazy">
+  <a class="visor-cerrar" href="#fig-2" aria-label="Close">×</a>
+<a class="visor-flecha izq" href="#img-1" aria-label="Previous">‹</a><p class="visor-pie">The fan follows the load in ten-minute stretches</p></div>
+
+
+  <nav class="vecinas" aria-label="More posts">
+<a class="vecina" href="../../../en/blog/mac-mini-cooling-stand/"><span class="muted pequeno">← Previous</span><span>Mac mini cooling stand</span></a><a class="vecina derecha" href="../../../en/blog/use-symbolic-links/"><span class="muted pequeno">Next →</span><span>Use symbolic links to avoid duplicates</span></a>  </nav>
+</article>
+      <footer class="pie">
+        <span>© 2026 Manuel Cernuda · www.manuelcernuda.net</span>
+        <span>
+<a href="../../../en/cookies/" data-cookies-abrir>Cookies</a> · <a href="../../../en/rss.xml">RSS</a>        </span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="cookies-capa" id="aviso-cookies" hidden>
+  <div class="aviso-cookies" role="dialog" aria-modal="true" aria-labelledby="aviso-cookies-texto" tabindex="-1">
+    <p id="aviso-cookies-texto">This site uses analytics cookies to know how many people visit it. May I use them?</p>
+    <div class="aviso-botones">
+      <button type="button" class="aviso-boton" data-cookies="si">Accept</button>
+      <button type="button" class="aviso-boton" data-cookies="no">Decline</button>
+    </div>
+    <p class="aviso-mas"><a href="../../../en/cookies/">More information</a></p>
+  </div>
+</div>
+</body>
+</html>

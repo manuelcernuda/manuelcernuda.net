@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 560" width="1200" height="560" font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f2c94c" />
+    </marker>
+    <marker id="flecha-gris" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b93a1" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="560" fill="#111418" />
+
+  
+  <rect x="30" y="30" width="700" height="460" rx="18" fill="#161a20" stroke="#f2c94c" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="8 8" />
+  <text x="56" y="66" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">AT HOME · NO OPEN PORTS</text>
+
+  
+  <rect x="60" y="100" width="640" height="360" rx="12" fill="#1d222a" stroke="#f2c94c" stroke-opacity="0.35" stroke-width="1.5" />
+  <text x="84" y="142" fill="#eef0f3" font-size="22" font-weight="700">miBusete container</text>
+  <text x="84" y="168" fill="#a9b0bc" font-size="15">Docker · Node.js and Telegraf · around 400 lines</text>
+
+  <g font-family="'JetBrains Mono', Menlo, monospace" font-size="13">
+    
+    <rect x="84" y="196" width="140" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="154" y="219" fill="#eef0f3" text-anchor="middle">bot.js</text>
+    <text x="154" y="239" fill="#8b93a1" text-anchor="middle">runs the show</text>
+
+    <rect x="240" y="196" width="140" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="310" y="219" fill="#eef0f3" text-anchor="middle">whitelist.js</text>
+    <text x="310" y="239" fill="#8b93a1" text-anchor="middle">family only</text>
+
+    <rect x="396" y="196" width="140" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="466" y="219" fill="#eef0f3" text-anchor="middle">keyboards.js</text>
+    <text x="466" y="239" fill="#8b93a1" text-anchor="middle">the buttons</text>
+
+    <rect x="552" y="196" width="124" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="614" y="219" fill="#eef0f3" text-anchor="middle">busApi.js</text>
+    <text x="614" y="239" fill="#8b93a1" text-anchor="middle">wraps the API</text>
+
+    <rect x="84" y="268" width="200" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="184" y="291" fill="#eef0f3" text-anchor="middle">paradasCercanas.js</text>
+    <text x="184" y="311" fill="#8b93a1" text-anchor="middle">nearest stop</text>
+
+    
+    <rect x="84" y="364" width="180" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="174" y="387" fill="#eef0f3" text-anchor="middle">config.json</text>
+    <text x="174" y="407" fill="#8b93a1" text-anchor="middle">users and stops</text>
+
+    <rect x="280" y="364" width="120" height="56" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="340" y="387" fill="#eef0f3" text-anchor="middle">.env</text>
+    <text x="340" y="407" fill="#8b93a1" text-anchor="middle">the token</text>
+  </g>
+  <text x="84" y="352" fill="#a9b0bc" font-size="14">Files mounted from the server, no database</text>
+
+  
+  <rect x="790" y="30" width="380" height="460" rx="18" fill="#14171c" stroke="#2c333d" stroke-width="2" />
+  <text x="816" y="66" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">INTERNET</text>
+
+  <rect x="820" y="100" width="320" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="836" y="138" fill="#eef0f3" font-size="19" font-weight="700">The phone</text>
+  <text x="836" y="172" fill="#a9b0bc" font-size="14">Taps buttons in Telegram</text>
+
+  <rect x="820" y="230" width="320" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="836" y="268" fill="#eef0f3" font-size="19" font-weight="700">Telegram</text>
+  <text x="836" y="296" fill="#a9b0bc" font-size="14">Holds the messages</text>
+  <text x="836" y="316" fill="#a9b0bc" font-size="14">until the bot asks</text>
+
+  <rect x="820" y="360" width="320" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="836" y="398" fill="#eef0f3" font-size="19" font-weight="700">TUA API</text>
+  <text x="836" y="432" fill="#a9b0bc" font-size="14">Arrival times, public, no key</text>
+
+  <line x1="980" y1="202" x2="980" y2="226" stroke="#8b93a1" stroke-width="2" marker-end="url(#flecha-gris)" />
+
+  
+  <path d="M702,280 C740,280 776,280 816,280" fill="none" stroke="#f2c94c" stroke-width="3" marker-end="url(#flecha)" />
+  <rect x="712" y="214" width="96" height="48" rx="8" fill="#111418" stroke="#f2c94c" stroke-width="1.5" />
+  <text x="760" y="234" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">polling</text>
+  <text x="760" y="252" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">asks</text>
+
+  
+  <line x1="702" y1="410" x2="816" y2="410" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+  <text x="760" y="398" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">GET</text>
+
+  <text x="600" y="532" fill="#a9b0bc" font-size="16" text-anchor="middle">Every connection goes out from home. Nobody on the internet can call the bot.</text>
+</svg>

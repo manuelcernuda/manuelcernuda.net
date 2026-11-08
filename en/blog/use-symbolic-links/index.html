@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Use symbolic links to avoid duplicates · Manuel Cernuda</title>
+<meta name="description" content="The problem with Yakreader Do you have an app that doesn&#39;t handle users, and you want several people to use it? That was my situation with Yakreader, my comic and manga reader. Yakreader has no users, and in a reader,…">
+<meta name="generator" content="webmaster 0.29.0">
+<meta name="theme-color" content="#0f1012">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Use symbolic links to avoid duplicates · Manuel Cernuda">
+<meta property="og:description" content="The problem with Yakreader Do you have an app that doesn&#39;t handle users, and you want several people to use it? That was my situation with Yakreader, my comic and manga reader. Yakreader has no users, and in a reader,…">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://www.manuelcernuda.net/en/blog/use-symbolic-links/"><link rel="canonical" href="https://www.manuelcernuda.net/en/blog/use-symbolic-links/"><meta property="og:image" content="https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"><link rel="icon" href="../../../assets/img/favicon-bc57e299.webp" type="image/webp"><link rel="alternate" type="application/rss+xml" title="Manuel Cernuda · Blog" href="../../../en/rss.xml"><link rel="alternate" hreflang="es" href="../../../blog/usa-enlaces-simbolicos/">
+<link rel="stylesheet" href="../../../assets/style.css">
+<script>(function(){var h=document.documentElement;if(h.hasAttribute("data-pagina-cookies"))return;try{var d=JSON.parse(localStorage.getItem("consentimiento-cookies"));if(d&&(d.v==="si"||d.v==="no")&&Date.now()-d.t<31536000000)return}catch(e){}h.classList.add("cookies-pendiente")})();</script>
+<script src="../../../assets/cookies.js" data-ga="G-S9NL9NGJ3G" data-dominio="www.manuelcernuda.net" data-si="You have accepted analytics cookies." data-no="You have declined analytics cookies." data-nada="You have not chosen yet." defer></script></head>
+<body>
+<a class="saltar" href="#contenido">Skip to content</a>
+<div class="pagina">
+  <a class="idioma" href="../../../blog/usa-enlaces-simbolicos/" hreflang="es" lang="es" title="Leer en español">
+<img src="../../../assets/banderas/es.svg" alt="Leer en español" width="28" height="21">
+  </a>
+  <header class="lateral">
+    <svg class="lateral-puntos" aria-hidden="true" width="132" height="96" viewBox="0 0 132 96">
+      <g fill="#ffc93c"><circle cx="4" cy="4" r="2"/><circle cx="24" cy="4" r="2"/><circle cx="44" cy="4" r="2"/><circle cx="64" cy="4" r="2"/><circle cx="84" cy="4" r="2"/><circle cx="4" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="44" cy="24" r="2"/><circle cx="64" cy="24" r="2"/><circle cx="4" cy="44" r="2"/><circle cx="24" cy="44" r="2"/><circle cx="44" cy="44" r="2"/><circle cx="4" cy="64" r="2"/><circle cx="24" cy="64" r="2"/><circle cx="4" cy="84" r="2"/></g>
+    </svg>
+    <div class="identidad">
+      <a class="foto-marco" href="../../../en/" aria-label="Home">
+        <svg class="foto-anillo" aria-hidden="true" viewBox="0 0 168 168"><circle cx="84" cy="84" r="81" fill="none" stroke="#ffc93c" stroke-width="1.5" stroke-dasharray="4 7"/><circle cx="150" cy="40" r="6" fill="#ffc93c"/></svg>
+<img class="foto" src="../../../assets/img/foto-96dbea32.webp" alt="Photo of Manuel Cernuda" width="144" height="144" style="object-position: 50% 34%">
+      </a>
+      <a class="nombre" href="../../../en/">Manuel Cernuda</a>
+      <span class="raya raya-centro" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Main" class="menu">
+      <ul>
+        <li><a href="../../../en/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span>Home</span></a></li>
+        <li><a href="../../../en/resume/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 13h18"/></svg><span>Résumé</span></a></li>
+        <li><a href="../../../en/blog/" aria-current="page"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>Blog</span></a></li>
+        <li><a href="../../../en/reading/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span>Reading</span></a></li>
+        <li><a href="../../../en/cubes/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5z"/><path d="M3.5 7.25L12 12l8.5-4.75M12 12v9.5"/><path d="M7.75 4.9l8.5 4.75M16.25 4.9L7.75 9.65" stroke-opacity=".5"/></svg><span>My Rubik&#39;s Cubes</span></a></li>
+        <li><a href="https://hobbits.manuelcernuda.net/" target="_blank" rel="noopener"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="15.5" width="16" height="4.5" rx="1"/><rect x="2.5" y="11" width="15" height="4.5" rx="1"/><rect x="6" y="6.5" width="14" height="4.5" rx="1"/><path d="M7.5 15.5v4.5M5.5 11v4.5M9 6.5v4.5"/></svg><span>My Hobbits</span><span class="externo" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span><span class="oculto"> (opens in a new tab)</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <div class="ancho lectura-estrecha">
+<article class="articulo">
+  <p><a class="volver" href="../../../en/blog/">← Back to the blog</a></p>
+  <header class="articulo-cabecera">
+    <p class="muted meta">
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><time datetime="2026-10-25">25 October 2026</time></span>
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>6 min read</span>
+    </p>
+    <h1>Use symbolic links to avoid duplicates<span class="punto">.</span></h1>
+<div class="etiquetas"><a class="etiqueta" href="../../../en/blog/category/tech/">Tech</a></div>  </header>
+  <div class="prosa cuerpo"><h2>The problem with Yakreader</h2>
+<p>Do you have an app that doesn't handle users, and you want several people to use it? That was my situation with Yakreader, my comic and manga reader.</p>
+<p>Yakreader has no users, and in a reader, progress matters: which issue you're on in each series, which pages you've bookmarked and what you still have left to read. If several people share the same library, all of that gets mixed up.</p>
+<p>If I wanted separate libraries for several people at home, the obvious option seemed to be tripling the source files, a full copy of the manga and comics for each person. And disk space isn't exactly something I have to spare.</p>
+<p>In the end, the solution is nothing exotic and not specific to Yakreader: symbolic links. It works for any app with the same problem, whether it handles reading, downloads, music or anything else.</p>
+<h2>The dilemma</h2>
+<p>The quickest option would be to point every library straight at the source folder, so the three Yakreader users read from the same path. The problem is that, for most of these apps, the folder they scan isn't just a list of files. It's also the foundation everything else is built on.</p>
+<p>If three users share exactly the same source folder, they also share:</p>
+<ul>
+<li><strong>Reading or playback progress.</strong> If the app stores progress by file path instead of by user, marking a chapter as read marks it for everyone.</li>
+<li><strong>Metadata and organization.</strong> Renaming, moving or deleting something in one user's folder affects the others, because it's actually the same folder.</li>
+<li><strong>The library scan itself.</strong> Some apps build their index or cache from the exact path, so sharing a path also means sharing that index.</li>
+</ul>
+<p>The old-school alternative, duplicating the files for each user, solves this by brute force, but it multiplies disk usage with every copy and forces you to keep all the copies in sync whenever new content arrives. For a NAS with several terabytes of manga and comics, it's not worth it.</p>
+<h2>The middle ground: symbolic links</h2>
+<p>A symbolic link (symlink) is a special file that holds no data, just a path to another file or folder. When an app opens that link, the operating system transparently redirects it to the real target. To the app, it's indistinguishable from a regular folder with its own files inside.</p>
+<p>This fits the problem above perfectly. The idea is to separate two things that until now had to go together:</p>
+<ul>
+<li><strong>Where the content really lives</strong>, a single copy on the NAS or whichever disk it's on.</li>
+<li><strong>How each library sees it</strong>, a different path per user or per app, pointing to that same copy through a link.</li>
+</ul>
+<p>That way, each Yakreader library scans its own folder, with its own index and its own reading progress, but under the hood they're all reading exactly the same files. When a new volume lands in the source folder, it shows up in all three libraries at once without touching anything else. And if a user reorganizes their view (although in this case one link per content type is all it takes), neither the original nor the others are affected.</p>
+<p>The same pattern works for any app with the same problem: a download manager feeding several apps, a music library you want organized differently depending on the player, or any case where “one source, many views” is exactly what you need.</p>
+<h2>How the flow looks</h2>
+<figure id="fig-1"><a class="ampliar" href="#img-1" aria-label="Enlarge image: One real source on the NAS and three libraries linked to it"><img loading="lazy" alt="One real source on the NAS and three libraries linked to it" src="../../../assets/blog/1dfae9becd564f93.svg" /></a><figcaption>One real source on the NAS and three libraries linked to it</figcaption></figure>
+<p>Every link points to the same real content, but each library only scans its own path: progress, cache and index stay separate by design.</p>
+<figure id="fig-2"><a class="ampliar" href="#img-2" aria-label="Enlarge image: File explorer: the real source and user1's linked folders"><img loading="lazy" alt="File explorer: the real source and user1's linked folders" src="../../../assets/blog/8bca2dadebbd4a4f.svg" /></a><figcaption>File explorer: the real source and user1's linked folders</figcaption></figure>
+<p>This is how anyone would see it in a file explorer. The linked folders only stand out because of their icon, and apps that support symbolic links treat them just like a regular folder.</p>
+<h2>On Linux or macOS (bash)</h2>
+<p>We start from two source folders that are already mounted (for example, a NAS network share mounted on the local file system):</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">/mount/nas/manga</span><span class="l">/mount/nas/comics</span></code></pre></div>
+<p>And we want three Yakreader users, each with their own library, to see that same content without duplicating it. First, we create the folder structure Yakreader will scan:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">mkdir</span> <span class="f">-p</span> /srv/docker/yakreader/library/user1</span><span class="l"><span class="c">mkdir</span> <span class="f">-p</span> /srv/docker/yakreader/library/user2</span><span class="l"><span class="c">mkdir</span> <span class="f">-p</span> /srv/docker/yakreader/library/user3</span></code></pre></div>
+<p>Now, one symbolic link per user and per content type:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">ln</span> <span class="f">-s</span> /mount/nas/manga   /srv/docker/yakreader/library/user1/manga</span><span class="l"><span class="c">ln</span> <span class="f">-s</span> /mount/nas/comics  /srv/docker/yakreader/library/user1/comics</span><span class="l"> </span><span class="l"><span class="c">ln</span> <span class="f">-s</span> /mount/nas/manga   /srv/docker/yakreader/library/user2/manga</span><span class="l"><span class="c">ln</span> <span class="f">-s</span> /mount/nas/comics  /srv/docker/yakreader/library/user2/comics</span><span class="l"> </span><span class="l"><span class="c">ln</span> <span class="f">-s</span> /mount/nas/manga   /srv/docker/yakreader/library/user3/manga</span><span class="l"><span class="c">ln</span> <span class="f">-s</span> /mount/nas/comics  /srv/docker/yakreader/library/user3/comics</span></code></pre></div>
+<p><code>ln -s source destination</code> creates the link. The order matters: first the real path, then the path of the link you're creating.</p>
+<p>To check it worked:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">bash</span></div><pre><code><span class="l"><span class="c">ls</span> <span class="f">-la</span> /srv/docker/yakreader/library/user1</span></code></pre></div>
+<p>You should see something like this, with the arrow showing where each link points:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">lrwxrwxrwx 1 manuel manuel 16 Oct 30 11:00 manga -&gt; /mount/nas/manga</span><span class="l">lrwxrwxrwx 1 manuel manuel 17 Oct 30 11:00 comics -&gt; /mount/nas/comics</span></code></pre></div>
+<p>From here, all you need to do in Yakreader is point each user's library at its folder (<code>/srv/docker/yakreader/library/user1</code>, and so on), and each one will scan the same real content without a single extra copy.</p>
+<h2>On Windows (PowerShell)</h2>
+<p>The same approach works just as well on Windows. Here we start, for example, from a mapped network drive (<code>W:</code>), although it could just as easily be a folder on your own disk:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">W:\library\manga</span><span class="l">W:\library\comics</span></code></pre></div>
+<p>We create each user's folder:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">powershell</span></div><pre><code><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> Directory <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user1"</span></span><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> Directory <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user2"</span></span><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> Directory <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user3"</span></span></code></pre></div>
+<p>And the symbolic links, with <code>New-Item -ItemType SymbolicLink</code>:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">powershell</span></div><pre><code><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> SymbolicLink <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user1\manga"</span>  <span class="f">-Target</span> <span class="s">"W:\library\manga"</span></span><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> SymbolicLink <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user1\comics"</span> <span class="f">-Target</span> <span class="s">"W:\library\comics"</span></span><span class="l"> </span><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> SymbolicLink <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user2\manga"</span>  <span class="f">-Target</span> <span class="s">"W:\library\manga"</span></span><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> SymbolicLink <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user2\comics"</span> <span class="f">-Target</span> <span class="s">"W:\library\comics"</span></span><span class="l"> </span><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> SymbolicLink <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user3\manga"</span>  <span class="f">-Target</span> <span class="s">"W:\library\manga"</span></span><span class="l"><span class="c">New-Item</span> <span class="f">-ItemType</span> SymbolicLink <span class="f">-Path</span> <span class="s">"C:\yakreader\library\user3\comics"</span> <span class="f">-Target</span> <span class="s">"W:\library\comics"</span></span></code></pre></div>
+<p>One important difference from Linux: to create symlinks on Windows you usually need to run PowerShell as administrator, or turn on Developer Mode (<em>Settings → Privacy &amp; security → For developers</em>), which lets you create them without elevated privileges.</p>
+<p>To check the link was created:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">powershell</span></div><pre><code><span class="l"><span class="c">Get-Item</span> <span class="s">"C:\yakreader\library\user1\manga"</span> <span class="op">|</span> <span class="c">Select-Object</span> LinkType, Target</span></code></pre></div>
+<p>It should return something like this:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">LinkType      Target</span><span class="l">--------      ------</span><span class="l">SymbolicLink  {W:\library\manga}</span></code></pre></div>
+<h2>Things to keep in mind</h2>
+<p>Before calling it done, a few caveats worth knowing:</p>
+<p><strong>If the source is moved or deleted, the links break.</strong> A link only stores a path, not a robust reference to the content. If you rename or move the source folder without updating the symlinks, they stop working and the app will see an empty folder or an error, depending on how it handles it.</p>
+<p><strong>The source permissions are what count.</strong> A symbolic link has no meaningful permissions of its own. What matters is whether the user the app runs as can read (and, if needed, write to) the real path it points to.</p>
+<p><strong>Not every app treats symlinks the same way.</strong> The vast majority follow them without any trouble, but some, especially those with strict security checks, may refuse to follow a link that leads outside their working folder. It's worth trying a small test case before setting up the whole structure.</p>
+<h2>Why it's worth it</h2>
+<p>What you get from this setup is the separation of two decisions that don't need to be tied together: where the content really lives, and how each app or each person organizes or sees it. A single real copy, as many independent views as you need, without wasting extra space and without having to keep anything in sync by hand.</p>
+<p>Yakreader is just the excuse. The same pattern works anywhere an app without user management needs separate progress or settings on top of the same set of files.</p>
+<p>If you've made it this far, I hope you found it useful. I realize this solution isn't for everyone, since it depends on the apps you use and how they handle their data.</p></div>
+  <div class="visor" id="img-1" role="dialog" aria-label="One real source on the NAS and three libraries linked to it">
+  <img src="../../../assets/blog/1dfae9becd564f93.svg" alt="One real source on the NAS and three libraries linked to it" loading="lazy">
+  <a class="visor-cerrar" href="#fig-1" aria-label="Close">×</a>
+<a class="visor-flecha der" href="#img-2" aria-label="Next">›</a><p class="visor-pie">One real source on the NAS and three libraries linked to it</p></div>
+<div class="visor" id="img-2" role="dialog" aria-label="File explorer: the real source and user1&#39;s linked folders">
+  <img src="../../../assets/blog/8bca2dadebbd4a4f.svg" alt="File explorer: the real source and user1&#39;s linked folders" loading="lazy">
+  <a class="visor-cerrar" href="#fig-2" aria-label="Close">×</a>
+<a class="visor-flecha izq" href="#img-1" aria-label="Previous">‹</a><p class="visor-pie">File explorer: the real source and user1's linked folders</p></div>
+
+
+  <nav class="vecinas" aria-label="More posts">
+<a class="vecina" href="../../../en/blog/fan-that-switches-itself-on/"><span class="muted pequeno">← Previous</span><span>A fan that switches itself on</span></a><a class="vecina derecha" href="../../../en/blog/a-cms-that-never-leaves-home/"><span class="muted pequeno">Next →</span><span>A CMS that never leaves home</span></a>  </nav>
+</article>
+      <footer class="pie">
+        <span>© 2026 Manuel Cernuda · www.manuelcernuda.net</span>
+        <span>
+<a href="../../../en/cookies/" data-cookies-abrir>Cookies</a> · <a href="../../../en/rss.xml">RSS</a>        </span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="cookies-capa" id="aviso-cookies" hidden>
+  <div class="aviso-cookies" role="dialog" aria-modal="true" aria-labelledby="aviso-cookies-texto" tabindex="-1">
+    <p id="aviso-cookies-texto">This site uses analytics cookies to know how many people visit it. May I use them?</p>
+    <div class="aviso-botones">
+      <button type="button" class="aviso-boton" data-cookies="si">Accept</button>
+      <button type="button" class="aviso-boton" data-cookies="no">Decline</button>
+    </div>
+    <p class="aviso-mas"><a href="../../../en/cookies/">More information</a></p>
+  </div>
+</div>
+</body>
+</html>
