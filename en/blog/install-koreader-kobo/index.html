@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to install KOReader on your Kobo · Manuel Cernuda</title>
+<meta name="description" content="First article in a series about digital reading at home: how to install KOReader on a Kobo without a jailbreak, how it opens and which plugins I have added.">
+<meta name="theme-color" content="#0f1012">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How to install KOReader on your Kobo · Manuel Cernuda">
+<meta property="og:description" content="First article in a series about digital reading at home: how to install KOReader on a Kobo without a jailbreak, how it opens and which plugins I have added.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://www.manuelcernuda.net/en/blog/install-koreader-kobo/"><link rel="canonical" href="https://www.manuelcernuda.net/en/blog/install-koreader-kobo/"><meta property="og:image" content="https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"><link rel="icon" href="../../../assets/img/favicon-bc57e299.webp" type="image/webp"><link rel="alternate" type="application/rss+xml" title="Manuel Cernuda · Blog" href="../../../en/rss.xml"><link rel="alternate" hreflang="es" href="../../../blog/instalar-koreader-kobo/">
+<link rel="stylesheet" href="../../../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to install KOReader on your Kobo",
+  "description": "First article in a series about digital reading at home: how to install KOReader on a Kobo without a jailbreak, how it opens and which plugins I have added.",
+  "inLanguage": "en-GB",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.manuelcernuda.net/en/blog/install-koreader-kobo/"
+  },
+  "url": "https://www.manuelcernuda.net/en/blog/install-koreader-kobo/",
+  "datePublished": "2026-11-22T10:00:00+01:00",
+  "dateModified": "2026-11-22T09:35:43+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Manuel Cernuda",
+    "url": "https://www.manuelcernuda.net/en/"
+  },
+  "image": "https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"
+}
+</script><script>(function(){var h=document.documentElement;if(h.hasAttribute("data-pagina-cookies"))return;try{var d=JSON.parse(localStorage.getItem("consentimiento-cookies"));if(d&&(d.v==="si"||d.v==="no")&&Date.now()-d.t<31536000000)return}catch(e){}h.classList.add("cookies-pendiente")})();</script>
+<script src="../../../assets/cookies.js" data-ga="G-S9NL9NGJ3G" data-dominio="www.manuelcernuda.net" data-si="You have accepted analytics cookies." data-no="You have declined analytics cookies." data-nada="You have not chosen yet." defer></script></head>
+<body>
+<a class="saltar" href="#contenido">Skip to content</a>
+<div class="pagina">
+  <a class="idioma" href="../../../blog/instalar-koreader-kobo/" hreflang="es" lang="es" title="Leer en español">
+<img src="../../../assets/banderas/es.svg" alt="Leer en español" width="28" height="21">
+  </a>
+  <header class="lateral">
+    <svg class="lateral-puntos" aria-hidden="true" width="132" height="96" viewBox="0 0 132 96">
+      <g fill="#ffc93c"><circle cx="4" cy="4" r="2"/><circle cx="24" cy="4" r="2"/><circle cx="44" cy="4" r="2"/><circle cx="64" cy="4" r="2"/><circle cx="84" cy="4" r="2"/><circle cx="4" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="44" cy="24" r="2"/><circle cx="64" cy="24" r="2"/><circle cx="4" cy="44" r="2"/><circle cx="24" cy="44" r="2"/><circle cx="44" cy="44" r="2"/><circle cx="4" cy="64" r="2"/><circle cx="24" cy="64" r="2"/><circle cx="4" cy="84" r="2"/></g>
+    </svg>
+    <div class="identidad">
+      <a class="foto-marco" href="../../../en/" aria-label="Home">
+        <svg class="foto-anillo" aria-hidden="true" viewBox="0 0 168 168"><circle cx="84" cy="84" r="81" fill="none" stroke="#ffc93c" stroke-width="1.5" stroke-dasharray="4 7"/><circle cx="150" cy="40" r="6" fill="#ffc93c"/></svg>
+<img class="foto" src="../../../assets/img/foto-96dbea32.webp" alt="Photo of Manuel Cernuda" width="144" height="144" style="object-position: 50% 34%">
+      </a>
+      <a class="nombre" href="../../../en/">Manuel Cernuda</a>
+      <span class="raya raya-centro" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Main" class="menu">
+      <ul>
+        <li><a href="../../../en/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span>Home</span></a></li>
+        <li><a href="../../../en/resume/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 13h18"/></svg><span>Résumé</span></a></li>
+        <li><a href="../../../en/blog/" aria-current="page"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>Blog</span></a></li>
+        <li><a href="../../../en/reading/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span>Reading</span></a></li>
+        <li><a href="../../../en/cubes/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5z"/><path d="M3.5 7.25L12 12l8.5-4.75M12 12v9.5"/><path d="M7.75 4.9l8.5 4.75M16.25 4.9L7.75 9.65" stroke-opacity=".5"/></svg><span>My Rubik&#39;s Cubes</span></a></li>
+        <li><a href="https://hobbits.manuelcernuda.net/" target="_blank" rel="noopener"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="15.5" width="16" height="4.5" rx="1"/><rect x="2.5" y="11" width="15" height="4.5" rx="1"/><rect x="6" y="6.5" width="14" height="4.5" rx="1"/><path d="M7.5 15.5v4.5M5.5 11v4.5M9 6.5v4.5"/></svg><span>My Hobbits</span><span class="externo" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span><span class="oculto"> (opens in a new tab)</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <div class="ancho lectura-estrecha">
+<article class="articulo">
+  <p><a class="volver" href="../../../en/blog/">← Back to the blog</a></p>
+  <header class="articulo-cabecera">
+    <p class="muted meta">
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><time datetime="2026-11-22">22 November 2026</time></span>
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>8 min read</span>
+    </p>
+    <h1>How to install KOReader on your Kobo<span class="punto">.</span></h1>
+<div class="etiquetas"><a class="etiqueta" href="../../../en/blog/category/tech/">Tech</a><a class="etiqueta" href="../../../en/blog/category/reader/">Reader</a></div>  </header>
+  <div class="prosa cuerpo"><p>Until recently I was reading on a jailbroken Kindle. I did it for one reason only: to be able to use KOReader, the reading app I ended up preferring to any other. It worked, but every Amazon update was a bit of a gamble.</p>
+<p>Now I have a new Kobo Libra Colour, and the first thing I did was install KOReader on it. The surprise was that no jailbreak is needed here: Kobo simply allows it.</p>
+<p>With this article I'm starting a series about e-readers, KOReader and the things that make reading at home better, especially if you have a server that is always on. But first things first: getting KOReader running on the Kobo.</p>
+<h2>The dilemma</h2>
+<p>The Kobo's built-in reader is fine for reading novels bought from its store. As soon as you want something more, it falls short: limited typography settings, little control over PDFs and comics, very basic statistics and no way of extending it.</p>
+<p>KOReader is the exact opposite. It's a free reading app that lets you adjust everything down to the last margin, gets on well with almost any format and supports plugins that add all sorts of things. The problem is that on many e-readers installing it means fighting the system.</p>
+<p>On the Kindle that means a jailbreak: relying on someone finding a flaw in your version of the system, applying it carefully and keeping your fingers crossed that the next update doesn't undo it. You can live like that, but it isn't comfortable.</p>
+<h2>The middle ground</h2>
+<p>On the Kobo you don't have to break anything. The system lets you copy programs into a hidden folder, <code>.adds</code>, and a small launcher, KFMon, takes care of opening them.</p>
+<p>Everything comes in a single package, the "one-click" maintained by <a href="https://github.com/NiLuJe" rel="noopener" target="_blank">NiLuJe</a>, one of the KOReader developers and the author of KFMon, on the MobileRead forum: KOReader and KFMon together, ready to copy to the Kobo over USB. The Kobo system isn't touched and works exactly as before. KOReader is simply added alongside it.</p>
+<h2>How KOReader opens</h2>
+<figure id="fig-1"><a class="ampliar" href="#img-1" aria-label="Enlarge image"><img loading="lazy" alt="" src="../../../assets/blog/15a34085985d4f6e.svg" /></a></figure>
+<p>The clever part is how it opens. After installing it, an extra "book" appears in the library, with the KOReader icon as its cover. KFMon watches what you open, and when you tap that book, instead of opening an image it starts KOReader full screen. As far as the Kobo is concerned, it's just another book.</p>
+<h2>Installing it step by step</h2>
+<p>First, download the package from <a href="https://www.mobileread.com/forums/showthread.php?p=3797536" rel="noopener" target="_blank">NiLuJe's thread on MobileRead</a>. It's called <code>OCP-KOReader-vYYYY.MM.zip</code>, with the version in the name. I used <code>OCP-KOReader-v2026.03.zip</code>.</p>
+<p>Then connect the Kobo to your computer over USB. It shows up as another drive, called <code>KOBOeReader</code>.</p>
+<p>From there, there are two ways to install it.</p>
+<p><strong>Unzipping it by hand.</strong> Extract the zip straight into the root of the Kobo drive, not into a subfolder. Watch out for Windows' <em>Extract All</em>, which suggests a new folder named after the zip as the destination: you need to change it to the root of the Kobo, or the installation won't work.</p>
+<p><strong>With the install script</strong> (the one I used). In the same thread, in the second post, there is a script for Windows, another for macOS and another for Linux. Download it into the same folder as the zip and run it. On Windows it's <code>install.ps1</code>, which you launch with right-click and <em>Run with PowerShell</em>. The script finds the Kobo and the package and does the rest.</p>
+<p>If Windows refuses to run it because the script isn't signed, unblock it first from PowerShell, in the folder where you downloaded it:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">powershell</span></div><pre><code><span class="l"><span class="c">Unblock-File</span> .\install.ps1</span></code></pre></div>
+<p>With either method, the Kobo drive should end up looking something like this:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">KOBOeReader/</span><span class="l">├── .adds/</span><span class="l">│   ├── kfmon/</span><span class="l">│   └── koreader/</span><span class="l">├── .kobo/</span><span class="l">└── koreader.png</span></code></pre></div>
+<p><code>koreader.png</code> is the "book" that will appear in the library, and <code>.adds/koreader</code> is where KOReader lives, with its settings and plugins.</p>
+<p>Finally, safely eject the Kobo from your computer. When you unplug it, the Kobo processes the installation and restarts by itself. When it's back, look for the book with the KOReader icon in the library and open it. If you see the KOReader screen, you're done.</p>
+<h2>The plugins I have added</h2>
+<p>One of the reasons to use KOReader is its plugins. They all install the same way: download the zip of the latest version from its GitHub page, extract the folder ending in <code>.koplugin</code> into <code>.adds/koreader/plugins/</code> and restart KOReader.</p>
+<p>I consider the first two essential on a Kobo. The other two are optional, but they have made my life easier. With all four, the folder looks like this:</p>
+<div class="codigo codigo-salida"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">salida</span></div><pre><code><span class="l">.adds/koreader/</span><span class="l">├── patches/</span><span class="l">│   └── 2-....lua              (the ones from kobo-patches.zip)</span><span class="l">└── plugins/</span><span class="l">    ├── kobo.koplugin/</span><span class="l">    ├── simpleui.koplugin/</span><span class="l">    ├── localsend.koplugin/</span><span class="l">    └── dogearmanager.koplugin/</span></code></pre></div>
+<h3>kobo.koplugin: what KOReader is missing on a Kobo</h3>
+<p><a href="https://github.com/OGKevin/kobo.koplugin" rel="noopener" target="_blank">kobo.koplugin</a> acts as a bridge between KOReader and the Kobo system. It adds a virtual library for opening books bought from the Kobo store from within KOReader and syncing your reading status with it. And, above all, it adds Bluetooth, which is what you need to use the Kobo remote (I cover that in another article).</p>
+<p>This one installs slightly differently. From the <a href="https://github.com/OGKevin/kobo.koplugin/releases" rel="noopener" target="_blank">release page</a> you need to download two files:</p>
+<ol>
+<li><code>kobo.koplugin.zip</code>: its folder goes into <code>.adds/koreader/plugins/</code>, like the others.</li>
+<li><code>kobo-patches.zip</code>: the files starting with <code>2-</code> and ending in <code>.lua</code> go into <code>.adds/koreader/patches/</code>. If the <code>patches</code> folder doesn't exist, create it.</li>
+</ol>
+<p>To check it has worked, open KOReader and go to <em>Settings → Network</em>. A new <em>Bluetooth</em> section should appear.</p>
+<h3>SimpleUI: a proper home screen</h3>
+<p><a href="https://github.com/doctorhetfield-cmd/simpleui.koplugin" rel="noopener" target="_blank">SimpleUI</a> is, for me, the best of the lot. It adds a home screen with the book you're reading and shortcuts, much nicer than the file browser KOReader starts with.</p>
+<p>You enable and configure it from <em>Tools → SimpleUI</em>. One of its options makes KOReader start straight on that screen, which was the first thing I switched on.</p>
+<h3>LocalSend: books over Wi-Fi, no cables (optional)</h3>
+<p><a href="https://github.com/kaikozlov/localsend.koplugin" rel="noopener" target="_blank">LocalSend for KOReader</a> lets you receive books and other files from your phone or computer with the LocalSend app, and send them from the reader too. It's the easiest way I have found to get a book onto the Kobo without reaching for the cable.</p>
+<p>Each version comes with one zip per architecture. For the Libra Colour it's the <code>arm64</code> one, but it's worth checking what the release page says, because the recommendation has changed over time.</p>
+<p>Once installed, it appears in the <em>Network</em> menu as LocalSend. There you choose the folder where files are saved and the device name, and tap <em>Start server</em>. If you enable <em>Start with KOReader</em>, the server starts automatically every time you open KOReader.</p>
+<h3>Dogear Manager: the bookmark your way (optional)</h3>
+<p><a href="https://github.com/sadke8465/Koreader-Custom-Bookmark-Manager/releases/tag/V1.0.0" rel="noopener" target="_blank">Dogear Manager</a> changes the corner icon that marks a page, the book's "dog-ear", from the menu itself and without editing any files. It needs KOReader v2025.10 or later.</p>
+<p>With a book open, in <em>Tools → Dogear Manager</em> you can choose the design, adjust the size (from 0.5x to 4.0x) and the margins, or go back to the original. If you want to use your own designs, put them in <code>.adds/koreader/icons/dogears/</code> so they aren't lost when the plugin is updated.</p>
+<h2>Things to bear in mind</h2>
+<p><strong>Kobo updates disable the launcher.</strong> When the Kobo installs a new version of its system, KFMon stops working and the KOReader book opens as a plain image. Nothing is lost: just install the same package (or a newer one) again, like the first time. Before you do, make a copy of the <code>.adds/koreader</code> folder, just in case.</p>
+<p><strong>The plugins are third-party.</strong> Each one is maintained by a different person, at their own pace. Before installing or updating one, it's worth checking on its page which version of KOReader it's meant for.</p>
+<p><strong>The Kobo is still a Kobo.</strong> KOReader doesn't replace the built-in reader, it lives alongside it. You can keep using the store, syncing and everything else as usual, and open KOReader only when you want to.</p>
+<h2>Why I like it</h2>
+<p>After years with the Kindle, what I value most is peace of mind. I don't depend on anyone finding a flaw in the system to be able to use the reader I want, and if an update disables the launcher, it's fixed in two minutes with the same old package.</p>
+<p>On top of that, KOReader on the Kobo is the same KOReader as always, with my settings, my gestures and my plugins. Changing device hasn't meant starting from scratch.</p>
+<p>This is just the beginning. In the next articles in the series I'll explain how I have it set up and how it fits in with everything else I have running at home. If you've made it this far with a Kobo in your hand, I hope you've found it useful.</p></div>
+  <div class="visor" id="img-1" role="dialog" aria-label="Enlarge image">
+  <img src="../../../assets/blog/15a34085985d4f6e.svg" alt="" loading="lazy">
+  <a class="visor-cerrar" href="#fig-1" aria-label="Close">×</a>
+</div>
+
+
+  <nav class="vecinas" aria-label="More posts">
+<a class="vecina" href="../../../en/blog/telegram-notifications-processes-apps/"><span class="muted pequeno">← Previous</span><span>Telegram notifications from your own processes and applications</span></a><a class="vecina derecha" href="../../../en/blog/how-to-set-up-bluetooth-remote-koreader-kobo/"><span class="muted pequeno">Next →</span><span>How to set up Bluetooth remotes in KOReader on your Kobo</span></a>  </nav>
+</article>
+      <footer class="pie">
+        <span>© 2026 Manuel Cernuda · www.manuelcernuda.net</span>
+        <span>
+<a href="../../../en/cookies/" data-cookies-abrir>Cookies</a> · <a href="../../../en/rss.xml">RSS</a>        </span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="cookies-capa" id="aviso-cookies" hidden>
+  <div class="aviso-cookies" role="dialog" aria-modal="true" aria-labelledby="aviso-cookies-texto" tabindex="-1">
+    <p id="aviso-cookies-texto">This site uses analytics cookies to know how many people visit it. May I use them?</p>
+    <div class="aviso-botones">
+      <button type="button" class="aviso-boton" data-cookies="si">Accept</button>
+      <button type="button" class="aviso-boton" data-cookies="no">Decline</button>
+    </div>
+    <p class="aviso-mas"><a href="../../../en/cookies/">More information</a></p>
+  </div>
+</div>
+</body>
+</html>

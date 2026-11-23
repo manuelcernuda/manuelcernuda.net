@@ -1,0 +1,128 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to stop KOReader hanging on Wi-Fi on your Kobo · Manuel Cernuda</title>
+<meta name="description" content="If your Kobo gets stuck trying to connect to Wi-Fi when it wakes up with a book open in KOReader, automatic progress sync is to blame. Here&#39;s how to fix it.">
+<meta name="theme-color" content="#0f1012">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How to stop KOReader hanging on Wi-Fi on your Kobo · Manuel Cernuda">
+<meta property="og:description" content="If your Kobo gets stuck trying to connect to Wi-Fi when it wakes up with a book open in KOReader, automatic progress sync is to blame. Here&#39;s how to fix it.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://www.manuelcernuda.net/en/blog/how-to-stop-koreader-wifi-hang-kobo/"><link rel="canonical" href="https://www.manuelcernuda.net/en/blog/how-to-stop-koreader-wifi-hang-kobo/"><meta property="og:image" content="https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"><link rel="icon" href="../../../assets/img/favicon-bc57e299.webp" type="image/webp"><link rel="alternate" type="application/rss+xml" title="Manuel Cernuda · Blog" href="../../../en/rss.xml"><link rel="alternate" hreflang="es" href="../../../blog/como-evitar-wifi-colgada-koreader-kobo/">
+<link rel="stylesheet" href="../../../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to stop KOReader hanging on Wi-Fi on your Kobo",
+  "description": "If your Kobo gets stuck trying to connect to Wi-Fi when it wakes up with a book open in KOReader, automatic progress sync is to blame. Here's how to fix it.",
+  "inLanguage": "en-GB",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.manuelcernuda.net/en/blog/how-to-stop-koreader-wifi-hang-kobo/"
+  },
+  "url": "https://www.manuelcernuda.net/en/blog/how-to-stop-koreader-wifi-hang-kobo/",
+  "datePublished": "2026-11-22T10:00:00+01:00",
+  "dateModified": "2026-11-23T13:35:15+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Manuel Cernuda",
+    "url": "https://www.manuelcernuda.net/en/"
+  },
+  "image": "https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"
+}
+</script><script>(function(){var h=document.documentElement;if(h.hasAttribute("data-pagina-cookies"))return;try{var d=JSON.parse(localStorage.getItem("consentimiento-cookies"));if(d&&(d.v==="si"||d.v==="no")&&Date.now()-d.t<31536000000)return}catch(e){}h.classList.add("cookies-pendiente")})();</script>
+<script src="../../../assets/cookies.js" data-ga="G-S9NL9NGJ3G" data-dominio="www.manuelcernuda.net" data-si="You have accepted analytics cookies." data-no="You have declined analytics cookies." data-nada="You have not chosen yet." defer></script></head>
+<body>
+<a class="saltar" href="#contenido">Skip to content</a>
+<div class="pagina">
+  <a class="idioma" href="../../../blog/como-evitar-wifi-colgada-koreader-kobo/" hreflang="es" lang="es" title="Leer en español">
+<img src="../../../assets/banderas/es.svg" alt="Leer en español" width="28" height="21">
+  </a>
+  <header class="lateral">
+    <svg class="lateral-puntos" aria-hidden="true" width="132" height="96" viewBox="0 0 132 96">
+      <g fill="#ffc93c"><circle cx="4" cy="4" r="2"/><circle cx="24" cy="4" r="2"/><circle cx="44" cy="4" r="2"/><circle cx="64" cy="4" r="2"/><circle cx="84" cy="4" r="2"/><circle cx="4" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="44" cy="24" r="2"/><circle cx="64" cy="24" r="2"/><circle cx="4" cy="44" r="2"/><circle cx="24" cy="44" r="2"/><circle cx="44" cy="44" r="2"/><circle cx="4" cy="64" r="2"/><circle cx="24" cy="64" r="2"/><circle cx="4" cy="84" r="2"/></g>
+    </svg>
+    <div class="identidad">
+      <a class="foto-marco" href="../../../en/" aria-label="Home">
+        <svg class="foto-anillo" aria-hidden="true" viewBox="0 0 168 168"><circle cx="84" cy="84" r="81" fill="none" stroke="#ffc93c" stroke-width="1.5" stroke-dasharray="4 7"/><circle cx="150" cy="40" r="6" fill="#ffc93c"/></svg>
+<img class="foto" src="../../../assets/img/foto-96dbea32.webp" alt="Photo of Manuel Cernuda" width="144" height="144" style="object-position: 50% 34%">
+      </a>
+      <a class="nombre" href="../../../en/">Manuel Cernuda</a>
+      <span class="raya raya-centro" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Main" class="menu">
+      <ul>
+        <li><a href="../../../en/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span>Home</span></a></li>
+        <li><a href="../../../en/resume/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 13h18"/></svg><span>Résumé</span></a></li>
+        <li><a href="../../../en/blog/" aria-current="page"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>Blog</span></a></li>
+        <li><a href="../../../en/reading/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span>Reading</span></a></li>
+        <li><a href="../../../en/cubes/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5z"/><path d="M3.5 7.25L12 12l8.5-4.75M12 12v9.5"/><path d="M7.75 4.9l8.5 4.75M16.25 4.9L7.75 9.65" stroke-opacity=".5"/></svg><span>My Rubik&#39;s Cubes</span></a></li>
+        <li><a href="https://hobbits.manuelcernuda.net/" target="_blank" rel="noopener"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="15.5" width="16" height="4.5" rx="1"/><rect x="2.5" y="11" width="15" height="4.5" rx="1"/><rect x="6" y="6.5" width="14" height="4.5" rx="1"/><path d="M7.5 15.5v4.5M5.5 11v4.5M9 6.5v4.5"/></svg><span>My Hobbits</span><span class="externo" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span><span class="oculto"> (opens in a new tab)</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <div class="ancho lectura-estrecha">
+<article class="articulo">
+  <p><a class="volver" href="../../../en/blog/">← Back to the blog</a></p>
+  <header class="articulo-cabecera">
+    <p class="muted meta">
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><time datetime="2026-11-22">22 November 2026</time></span>
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>3 min read</span>
+    </p>
+    <h1>How to stop KOReader hanging on Wi-Fi on your Kobo<span class="punto">.</span></h1>
+<div class="etiquetas"><a class="etiqueta" href="../../../en/blog/category/tech/">Tech</a><a class="etiqueta" href="../../../en/blog/category/reader/">Reader</a></div>  </header>
+  <div class="prosa cuerpo"><p>With KOReader installed on the Kobo (I explain how in <a href="/en/blog/install-koreader-kobo/">how to install KOReader on your Kobo</a>), I ran into a really annoying habit. When I switched the Kobo on with a book open, it got stuck trying to connect to Wi-Fi and stopped responding. The odd thing was that if I then pushed my progress by hand, it connected straight away.</p>
+<h2>Why it happens</h2>
+<p>The culprit is automatic reading progress sync. KOReader can save the page you're on to a server, so you can pick up where you left off on another device. In a future article I'll explain exactly what it's for and how to set it up.</p>
+<p>With automatic sync on, KOReader checks that server when you open or resume a book, and to do that it switches Wi-Fi on. The problem is that it does so just as the Kobo has woken up and the network isn't ready yet, and there it sits, waiting.</p>
+<p>When you sync by hand, on the other hand, the Kobo has been awake for a while and Wi-Fi connects without any trouble.</p>
+<h2>The fix</h2>
+<p>Turn off automatic sync. Manual sync keeps working just the same and only switches Wi-Fi on when you ask for it.</p>
+<p>With a book open, go to <em>Tools → Progress sync</em> and untick the option to sync automatically.</p>
+<p>Since then, when I switch the Kobo on I'm straight back on the page I was reading, with no waiting.</p>
+<h2>Checking it's all set up</h2>
+<p>As with any setting, you can check the result on your computer. With KOReader closed, connect the Kobo over USB and open <code>.adds/koreader/settings.reader.lua</code>. In the <code>["kosync"]</code> block (the internal name for sync) you should see:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">lua</span></div><pre><code><span class="l">[<span class="s">"kosync"</span>] <span class="op">=</span> {</span><span class="l">    [<span class="s">"auto_sync"</span>] <span class="op">=</span> <span class="v">false</span>,   <span class="k">-- automatic sync turned off</span></span><span class="l">},</span></code></pre></div>
+<p>There will be more lines in that block, such as the server address and your username. Leave those alone.</p>
+<p>In the same file, outside that block, Wi-Fi is best set up like this:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">lua</span></div><pre><code><span class="l">[<span class="s">"wifi_enable_action"</span>] <span class="op">=</span> <span class="s">"turn_on"</span>,   <span class="k">-- if an action needs Wi-Fi, switch it on</span></span><span class="l">[<span class="s">"wifi_disable_action"</span>] <span class="op">=</span> <span class="s">"leave_on"</span>, <span class="k">-- don't switch it off afterwards</span></span></code></pre></div>
+<p>With these two values, when you sync by hand KOReader switches Wi-Fi on without asking and leaves it on, which is exactly what you want to make manual sync comfortable.</p>
+<h2>What you lose, and how to get it back</h2>
+<p>The trade-off is that if you've been reading the book on another device, opening it on the Kobo won't jump to where you left off on its own. You have to pull the progress in by hand.</p>
+<p>To keep that from being a chore, I assigned sync to a gesture: a tap in the bottom right-hand corner of the screen. You set it up in KOReader's gesture settings by choosing the progress sync action. That puts it one tap away, without going through any menus.</p>
+<h2>Things to bear in mind</h2>
+<p><strong>Only edit the settings file with KOReader closed.</strong> KOReader rewrites it when it exits, and one missing comma can stop it from starting. If you edit it by hand, make a copy first.</p>
+<p><strong>If you use a Bluetooth remote, Wi-Fi matters too.</strong> On the Libra Colour, Bluetooth needs Wi-Fi switched on to come back after waking. I cover it in <a href="/en/blog/how-to-set-up-bluetooth-remote-koreader-kobo/">how to set up Bluetooth remotes in KOReader on your Kobo</a>.</p>
+<h2>Waking up without the wait</h2>
+<p>It's a small change, but you notice it every time you pick up the Kobo: you switch it on and you're reading. In exchange, one tap in the corner when I've been reading somewhere else, which seems a more than fair price to me.</p></div>
+  
+
+  <nav class="vecinas" aria-label="More posts">
+<a class="vecina" href="../../../en/blog/how-to-set-up-bluetooth-remote-koreader-kobo/"><span class="muted pequeno">← Previous</span><span>How to set up Bluetooth remotes in KOReader on your Kobo</span></a>  </nav>
+</article>
+      <footer class="pie">
+        <span>© 2026 Manuel Cernuda · www.manuelcernuda.net</span>
+        <span>
+<a href="../../../en/cookies/" data-cookies-abrir>Cookies</a> · <a href="../../../en/rss.xml">RSS</a>        </span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="cookies-capa" id="aviso-cookies" hidden>
+  <div class="aviso-cookies" role="dialog" aria-modal="true" aria-labelledby="aviso-cookies-texto" tabindex="-1">
+    <p id="aviso-cookies-texto">This site uses analytics cookies to know how many people visit it. May I use them?</p>
+    <div class="aviso-botones">
+      <button type="button" class="aviso-boton" data-cookies="si">Accept</button>
+      <button type="button" class="aviso-boton" data-cookies="no">Decline</button>
+    </div>
+    <p class="aviso-mas"><a href="../../../en/cookies/">More information</a></p>
+  </div>
+</div>
+</body>
+</html>

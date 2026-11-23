@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 500" width="1200" height="500" font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f2c94c" />
+    </marker>
+    
+    <g id="libro">
+      <rect width="70" height="96" rx="4" fill="#2c333d" stroke="#4a525e" stroke-width="1.5" />
+      <rect x="12" y="18" width="46" height="6" rx="3" fill="#4a525e" />
+      <rect x="12" y="32" width="32" height="6" rx="3" fill="#4a525e" />
+    </g>
+  </defs>
+
+  <rect width="1200" height="500" fill="#111418" />
+
+  
+  <rect x="30" y="30" width="1140" height="400" rx="18" fill="#161a20" stroke="#f2c94c" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="8 8" />
+  <text x="56" y="66" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">INSIDE THE KOBO · NO JAILBREAK</text>
+
+  
+  <rect x="60" y="90" width="320" height="310" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="88" cy="118" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="88" y="123" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">1</text>
+  <text x="112" y="124" fill="#eef0f3" font-size="20" font-weight="700">Library</text>
+
+  <use href="#libro" x="88" y="150" />
+  <use href="#libro" x="172" y="150" />
+  
+  <rect x="256" y="150" width="70" height="96" rx="4" fill="#161a20" stroke="#f2c94c" stroke-width="2" />
+  <text x="291" y="196" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">KO</text>
+  <text x="291" y="214" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">Reader</text>
+  <use href="#libro" x="88" y="262" />
+  <use href="#libro" x="172" y="262" />
+  <use href="#libro" x="256" y="262" />
+
+  <text x="84" y="384" fill="#a9b0bc" font-size="14">It shows up as just another book</text>
+
+  
+  <rect x="440" y="90" width="320" height="310" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="468" cy="118" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="468" y="123" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">2</text>
+  <text x="492" y="124" fill="#eef0f3" font-size="20" font-weight="700">KFMon</text>
+  <text x="464" y="170" fill="#a9b0bc" font-size="14">It watches which book you open.</text>
+  <text x="464" y="190" fill="#a9b0bc" font-size="14">If it's the KOReader one, instead</text>
+  <text x="464" y="210" fill="#a9b0bc" font-size="14">of opening an image, it launches</text>
+  <text x="464" y="230" fill="#a9b0bc" font-size="14">the app.</text>
+
+  <g font-family="'JetBrains Mono', Menlo, monospace" font-size="13">
+    <rect x="464" y="290" width="272" height="62" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="600" y="317" fill="#eef0f3" text-anchor="middle">koreader.png</text>
+    <text x="600" y="337" fill="#8b93a1" text-anchor="middle">→ .adds/koreader</text>
+  </g>
+
+  
+  <rect x="820" y="90" width="320" height="310" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="848" cy="118" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="848" y="123" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">3</text>
+  <text x="872" y="124" fill="#eef0f3" font-size="20" font-weight="700">KOReader</text>
+
+  
+  <rect x="844" y="150" width="272" height="208" rx="10" fill="#161a20" stroke="#2c333d" stroke-width="1.5" />
+  <rect x="864" y="172" width="150" height="8" rx="4" fill="#eef0f3" />
+  <rect x="864" y="196" width="232" height="6" rx="3" fill="#4a525e" />
+  <rect x="864" y="212" width="232" height="6" rx="3" fill="#4a525e" />
+  <rect x="864" y="228" width="210" height="6" rx="3" fill="#4a525e" />
+  <rect x="864" y="244" width="232" height="6" rx="3" fill="#4a525e" />
+  <rect x="864" y="260" width="180" height="6" rx="3" fill="#4a525e" />
+  <rect x="864" y="284" width="232" height="6" rx="3" fill="#4a525e" />
+  <rect x="864" y="300" width="220" height="6" rx="3" fill="#4a525e" />
+  <rect x="864" y="316" width="140" height="6" rx="3" fill="#4a525e" />
+  <text x="1096" y="346" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="end">12%</text>
+
+  <text x="864" y="384" fill="#a9b0bc" font-size="14">It opens full screen</text>
+
+  
+  <line x1="382" y1="245" x2="436" y2="245" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+  <line x1="762" y1="245" x2="816" y2="245" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+
+  <text x="600" y="472" fill="#a9b0bc" font-size="16" text-anchor="middle">To the Kobo it's just a book in the library. When you open it, KFMon starts KOReader.</text>
+</svg>

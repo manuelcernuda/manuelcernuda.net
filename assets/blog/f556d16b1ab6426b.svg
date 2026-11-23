@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" width="1200" height="620" font-family="Inter, 'Helvetica Neue', Arial, sans-serif">
+  <defs>
+    <marker id="flecha" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#f2c94c" />
+    </marker>
+    <marker id="flecha-gris" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,0 L10,5 L0,10 z" fill="#8b93a1" />
+    </marker>
+  </defs>
+
+  <rect width="1200" height="620" fill="#111418" />
+
+  
+  <rect x="30" y="50" width="740" height="500" rx="18" fill="#161a20" stroke="#f2c94c" stroke-opacity="0.55" stroke-width="2" stroke-dasharray="8 8" />
+  <text x="56" y="88" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">EN CASA · SOLO LAN O VPN</text>
+
+  
+  <rect x="60" y="120" width="200" height="120" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="88" cy="148" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="88" y="153" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">1</text>
+  <text x="112" y="154" fill="#eef0f3" font-size="20" font-weight="700">Edito</text>
+  <text x="76" y="194" fill="#a9b0bc" font-size="14">Formularios para</text>
+  <text x="76" y="214" fill="#a9b0bc" font-size="14">datos, textos y fotos</text>
+
+  
+  <rect x="300" y="120" width="200" height="120" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="328" cy="148" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="328" y="153" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">2</text>
+  <text x="352" y="154" fill="#eef0f3" font-size="20" font-weight="700">Genero</text>
+  <text x="316" y="194" fill="#a9b0bc" font-size="14">Plantillas Jinja2</text>
+  <text x="316" y="214" fill="#a9b0bc" font-size="14">→ HTML + CSS</text>
+
+  
+  <rect x="540" y="120" width="200" height="120" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="568" cy="148" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="568" y="153" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">3</text>
+  <text x="592" y="154" fill="#eef0f3" font-size="20" font-weight="700">Reviso</text>
+  <text x="556" y="194" fill="#a9b0bc" font-size="14">Vista previa del</text>
+  <text x="556" y="214" fill="#a9b0bc" font-size="14">build, tal cual saldrá</text>
+
+  <line x1="262" y1="180" x2="296" y2="180" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+  <line x1="502" y1="180" x2="536" y2="180" stroke="#f2c94c" stroke-width="2" marker-end="url(#flecha)" />
+
+  
+  <line x1="160" y1="242" x2="160" y2="318" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+  <line x1="400" y1="242" x2="400" y2="318" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+  <line x1="640" y1="242" x2="640" y2="318" stroke="#4a525e" stroke-width="1.5" stroke-dasharray="4 5" />
+
+  
+  <rect x="60" y="320" width="680" height="190" rx="12" fill="#1d222a" stroke="#f2c94c" stroke-opacity="0.35" stroke-width="1.5" />
+  <text x="84" y="362" fill="#eef0f3" font-size="22" font-weight="700">Administrador de páginas</text>
+  <text x="84" y="390" fill="#a9b0bc" font-size="15">Contenedor Docker · Python, Flask, Jinja2, SQLite y Pillow</text>
+
+  <g font-family="'JetBrains Mono', Menlo, monospace" font-size="13">
+    <rect x="84" y="420" width="140" height="62" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="154" y="447" fill="#eef0f3" text-anchor="middle">Base de datos</text>
+    <text x="154" y="467" fill="#8b93a1" text-anchor="middle">SQLite</text>
+
+    <rect x="240" y="420" width="140" height="62" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="310" y="447" fill="#eef0f3" text-anchor="middle">Originales</text>
+    <text x="310" y="467" fill="#8b93a1" text-anchor="middle">privados</text>
+
+    <rect x="396" y="420" width="140" height="62" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="466" y="447" fill="#eef0f3" text-anchor="middle">Builds</text>
+    <text x="466" y="467" fill="#8b93a1" text-anchor="middle">historial</text>
+
+    <rect x="552" y="420" width="164" height="62" rx="8" fill="#161a20" stroke="#2c333d" />
+    <text x="634" y="447" fill="#eef0f3" text-anchor="middle">Deploy keys</text>
+    <text x="634" y="467" fill="#8b93a1" text-anchor="middle">una por site</text>
+  </g>
+
+  
+  <rect x="830" y="50" width="340" height="500" rx="18" fill="#14171c" stroke="#2c333d" stroke-width="2" />
+  <text x="856" y="88" fill="#8b93a1" font-family="'JetBrains Mono', Menlo, monospace" font-size="15" letter-spacing="2">INTERNET</text>
+
+  <rect x="860" y="120" width="280" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="888" cy="148" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="888" y="153" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">4</text>
+  <text x="912" y="154" fill="#eef0f3" font-size="19" font-weight="700">Repo público</text>
+  <text x="876" y="194" fill="#a9b0bc" font-size="14">Un commit: HTML, CSS e imágenes</text>
+
+  <rect x="860" y="270" width="280" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <circle cx="888" cy="298" r="14" fill="none" stroke="#f2c94c" stroke-width="2" />
+  <text x="888" y="303" fill="#f2c94c" font-size="14" font-weight="700" text-anchor="middle">5</text>
+  <text x="912" y="304" fill="#eef0f3" font-size="19" font-weight="700">GitHub Pages</text>
+  <text x="876" y="344" fill="#a9b0bc" font-size="14">Publica en segundos, con HTTPS</text>
+
+  <rect x="860" y="420" width="280" height="100" rx="12" fill="#1d222a" stroke="#2c333d" stroke-width="1.5" />
+  <text x="876" y="456" fill="#eef0f3" font-size="19" font-weight="700">Visitantes</text>
+  <text x="876" y="482" fill="#a9b0bc" font-size="14">Dominio propio</text>
+  <text x="876" y="502" fill="#a9b0bc" font-size="14">(CNAME en Namecheap)</text>
+
+  <line x1="1000" y1="222" x2="1000" y2="266" stroke="#8b93a1" stroke-width="2" marker-end="url(#flecha-gris)" />
+  <line x1="1000" y1="372" x2="1000" y2="416" stroke="#8b93a1" stroke-width="2" marker-end="url(#flecha-gris)" />
+
+  
+  <path d="M742,180 C790,180 810,170 856,170" fill="none" stroke="#f2c94c" stroke-width="3" marker-end="url(#flecha)" />
+  <rect x="752" y="112" width="96" height="48" rx="8" fill="#111418" stroke="#f2c94c" stroke-width="1.5" />
+  <text x="800" y="132" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">git push</text>
+  <text x="800" y="150" fill="#f2c94c" font-family="'JetBrains Mono', Menlo, monospace" font-size="13" text-anchor="middle">por SSH</text>
+
+  <text x="600" y="592" fill="#a9b0bc" font-size="16" text-anchor="middle">Solo sale contenido estático. Desde internet no se puede llegar a nada de lo que hay en casa.</text>
+</svg>

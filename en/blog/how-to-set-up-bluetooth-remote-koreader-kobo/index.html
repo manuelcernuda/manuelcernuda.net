@@ -1,0 +1,153 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>How to set up Bluetooth remotes in KOReader on your Kobo · Manuel Cernuda</title>
+<meta name="description" content="How to pair the Kobo Remote with KOReader, assign its buttons to turn pages and keep it working after the Kobo goes to sleep.">
+<meta name="theme-color" content="#0f1012">
+<meta property="og:type" content="website">
+<meta property="og:title" content="How to set up Bluetooth remotes in KOReader on your Kobo · Manuel Cernuda">
+<meta property="og:description" content="How to pair the Kobo Remote with KOReader, assign its buttons to turn pages and keep it working after the Kobo goes to sleep.">
+<meta property="og:locale" content="en_GB">
+<meta property="og:url" content="https://www.manuelcernuda.net/en/blog/how-to-set-up-bluetooth-remote-koreader-kobo/"><link rel="canonical" href="https://www.manuelcernuda.net/en/blog/how-to-set-up-bluetooth-remote-koreader-kobo/"><meta property="og:image" content="https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"><link rel="icon" href="../../../assets/img/favicon-bc57e299.webp" type="image/webp"><link rel="alternate" type="application/rss+xml" title="Manuel Cernuda · Blog" href="../../../en/rss.xml"><link rel="alternate" hreflang="es" href="../../../blog/como-configurar-mando-bluetooth-koreader-kobo/">
+<link rel="stylesheet" href="../../../assets/style.css">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "How to set up Bluetooth remotes in KOReader on your Kobo",
+  "description": "How to pair the Kobo Remote with KOReader, assign its buttons to turn pages and keep it working after the Kobo goes to sleep.",
+  "inLanguage": "en-GB",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://www.manuelcernuda.net/en/blog/how-to-set-up-bluetooth-remote-koreader-kobo/"
+  },
+  "url": "https://www.manuelcernuda.net/en/blog/how-to-set-up-bluetooth-remote-koreader-kobo/",
+  "datePublished": "2026-11-22T10:00:00+01:00",
+  "dateModified": "2026-11-23T13:35:30+01:00",
+  "author": {
+    "@type": "Person",
+    "name": "Manuel Cernuda",
+    "url": "https://www.manuelcernuda.net/en/"
+  },
+  "image": "https://www.manuelcernuda.net/assets/img/imagen_social-bee37c42.webp"
+}
+</script><script>(function(){var h=document.documentElement;if(h.hasAttribute("data-pagina-cookies"))return;try{var d=JSON.parse(localStorage.getItem("consentimiento-cookies"));if(d&&(d.v==="si"||d.v==="no")&&Date.now()-d.t<31536000000)return}catch(e){}h.classList.add("cookies-pendiente")})();</script>
+<script src="../../../assets/cookies.js" data-ga="G-S9NL9NGJ3G" data-dominio="www.manuelcernuda.net" data-si="You have accepted analytics cookies." data-no="You have declined analytics cookies." data-nada="You have not chosen yet." defer></script></head>
+<body>
+<a class="saltar" href="#contenido">Skip to content</a>
+<div class="pagina">
+  <a class="idioma" href="../../../blog/como-configurar-mando-bluetooth-koreader-kobo/" hreflang="es" lang="es" title="Leer en español">
+<img src="../../../assets/banderas/es.svg" alt="Leer en español" width="28" height="21">
+  </a>
+  <header class="lateral">
+    <svg class="lateral-puntos" aria-hidden="true" width="132" height="96" viewBox="0 0 132 96">
+      <g fill="#ffc93c"><circle cx="4" cy="4" r="2"/><circle cx="24" cy="4" r="2"/><circle cx="44" cy="4" r="2"/><circle cx="64" cy="4" r="2"/><circle cx="84" cy="4" r="2"/><circle cx="4" cy="24" r="2"/><circle cx="24" cy="24" r="2"/><circle cx="44" cy="24" r="2"/><circle cx="64" cy="24" r="2"/><circle cx="4" cy="44" r="2"/><circle cx="24" cy="44" r="2"/><circle cx="44" cy="44" r="2"/><circle cx="4" cy="64" r="2"/><circle cx="24" cy="64" r="2"/><circle cx="4" cy="84" r="2"/></g>
+    </svg>
+    <div class="identidad">
+      <a class="foto-marco" href="../../../en/" aria-label="Home">
+        <svg class="foto-anillo" aria-hidden="true" viewBox="0 0 168 168"><circle cx="84" cy="84" r="81" fill="none" stroke="#ffc93c" stroke-width="1.5" stroke-dasharray="4 7"/><circle cx="150" cy="40" r="6" fill="#ffc93c"/></svg>
+<img class="foto" src="../../../assets/img/foto-96dbea32.webp" alt="Photo of Manuel Cernuda" width="144" height="144" style="object-position: 50% 34%">
+      </a>
+      <a class="nombre" href="../../../en/">Manuel Cernuda</a>
+      <span class="raya raya-centro" aria-hidden="true"></span>
+    </div>
+    <nav aria-label="Main" class="menu">
+      <ul>
+        <li><a href="../../../en/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 11l9-7 9 7"/><path d="M5 10v10h14V10"/><path d="M10 20v-5h4v5"/></svg><span>Home</span></a></li>
+        <li><a href="../../../en/resume/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5h6v2"/><path d="M3 13h18"/></svg><span>Résumé</span></a></li>
+        <li><a href="../../../en/blog/" aria-current="page"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20h4L19 9l-4-4L4 16z"/><path d="M14 6l4 4"/></svg><span>Blog</span></a></li>
+        <li><a href="../../../en/reading/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M2 5h7a3 3 0 0 1 3 3v12a2 2 0 0 0-2-2H2z"/><path d="M22 5h-7a3 3 0 0 0-3 3v12a2 2 0 0 1 2-2h8z"/></svg><span>Reading</span></a></li>
+        <li><a href="../../../en/cubes/"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5l8.5 4.75v9.5L12 21.5l-8.5-4.75v-9.5z"/><path d="M3.5 7.25L12 12l8.5-4.75M12 12v9.5"/><path d="M7.75 4.9l8.5 4.75M16.25 4.9L7.75 9.65" stroke-opacity=".5"/></svg><span>My Rubik&#39;s Cubes</span></a></li>
+        <li><a href="https://hobbits.manuelcernuda.net/" target="_blank" rel="noopener"><svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="15.5" width="16" height="4.5" rx="1"/><rect x="2.5" y="11" width="15" height="4.5" rx="1"/><rect x="6" y="6.5" width="14" height="4.5" rx="1"/><path d="M7.5 15.5v4.5M5.5 11v4.5M9 6.5v4.5"/></svg><span>My Hobbits</span><span class="externo" aria-hidden="true"><svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg></span><span class="oculto"> (opens in a new tab)</span></a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main class="contenido" id="contenido">
+    <div class="ancho lectura-estrecha">
+<article class="articulo">
+  <p><a class="volver" href="../../../en/blog/">← Back to the blog</a></p>
+  <header class="articulo-cabecera">
+    <p class="muted meta">
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></svg></span><time datetime="2026-11-22">22 November 2026</time></span>
+      <span class="con-icono"><span class="amarillo"><svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg></span>5 min read</span>
+    </p>
+    <h1>How to set up Bluetooth remotes in KOReader on your Kobo<span class="punto">.</span></h1>
+<div class="etiquetas"><a class="etiqueta" href="../../../en/blog/category/tech/">Tech</a><a class="etiqueta" href="../../../en/blog/category/reader/">Reader</a></div>  </header>
+  <div class="prosa cuerpo"><p>I read on the sofa or in bed, with the e-reader on a floor-standing holder with an adjustable arm (<a href="https://amzn.eu/d/020CJk0j" rel="noopener" target="_blank">one of my best buys of 2026</a>). With the Kindle I turned pages with a clicker clamped to the reader that tapped the screen for me and covered part of it. With the Kobo I have the Kobo Remote, its official Bluetooth remote: two buttons and nothing attached to the device.</p>
+<p>The Kobo's own reader recognises it out of the box. KOReader doesn't, because it doesn't handle the Kobo's Bluetooth on its own, so it needs setting up. I'm starting from KOReader already installed, as explained in <a href="/en/blog/install-koreader-kobo/">how to install KOReader on your Kobo</a>.</p>
+<h2>What you need</h2>
+<p>Bluetooth is added by the <a href="https://github.com/OGKevin/kobo.koplugin" rel="noopener" target="_blank">kobo.koplugin</a> plugin: a menu to scan for, pair and connect devices, and a way to assign actions to the remote's buttons. If you followed the installation article, you already have it.</p>
+<p>To check, open KOReader and go to <em>Settings → Network</em>. If there is a <em>Bluetooth</em> section, you're good to go.</p>
+<h2>Pairing the remote</h2>
+<p>You only need to do this once:</p>
+<ol>
+<li>In KOReader, go to <em>Settings → Network → Bluetooth</em> and switch Bluetooth on.</li>
+<li>Put the remote into pairing mode, as described in its manual. The LED starts blinking.</li>
+<li>Tap <em>Scan for devices</em> and, when the remote appears, select it to pair it.</li>
+<li>In <em>Paired devices</em>, open your remote and tick <em>Trust</em>. That way it can connect without asking for confirmation every time.</li>
+<li>Tap <em>Connect</em>. The remote should show as connected.</li>
+</ol>
+<h2>Assigning the buttons</h2>
+<p>Being connected isn't enough: you have to tell KOReader what each button does.</p>
+<p>In the same remote submenu, go into <em>Configure key bindings</em>. Choose the "next page" action and, when prompted, press the button on the remote you want to use to go forward. Repeat with "previous page" and the other button.</p>
+<p><strong>If it doesn't pick up the button presses, restart KOReader</strong> and try again. It happened to me the first time and that sorted it.</p>
+<p>Leave on the plugin option that dismisses pop-up windows when you press a button on the remote (it's on by default). That way you don't have to touch the screen to clear a notice.</p>
+<h2>Checking it's all set up</h2>
+<p>If something goes wrong, it's easier to check on your computer. With KOReader closed, connect the Kobo over USB and open <code>.adds/koreader/settings.reader.lua</code>. In the <code>["kobo_plugin"]</code> block you should see something like this:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">lua</span></div><pre><code><span class="l">[<span class="s">"kobo_plugin"</span>] <span class="op">=</span> {</span><span class="l">    [<span class="s">"bluetooth_key_bindings"</span>] <span class="op">=</span> {</span><span class="l">        [<span class="s">"AA:BB:CC:DD:EE:FF"</span>] <span class="op">=</span> {               <span class="k">-- your remote's MAC</span></span><span class="l">            [<span class="s">"KEY_103"</span>] <span class="op">=</span> <span class="s">"Reader:prev_page"</span>,   <span class="k">-- previous page</span></span><span class="l">            [<span class="s">"KEY_108"</span>] <span class="op">=</span> <span class="s">"Reader:next_page"</span>,   <span class="k">-- next page</span></span><span class="l">        },</span><span class="l">    },</span><span class="l">    [<span class="s">"dismiss_widgets_on_button"</span>] <span class="op">=</span> <span class="v">true</span>,</span><span class="l">    [<span class="s">"paired_devices"</span>] <span class="op">=</span> {</span><span class="l">        [<span class="v">1</span>] <span class="op">=</span> {</span><span class="l">            [<span class="s">"address"</span>] <span class="op">=</span> <span class="s">"AA:BB:CC:DD:EE:FF"</span>,</span><span class="l">            [<span class="s">"name"</span>] <span class="op">=</span> <span class="s">"Kobo Remote"</span>,</span><span class="l">        },</span><span class="l">    },</span><span class="l">},</span></code></pre></div>
+<p>What to look for:</p>
+<ul>
+<li><code>paired_devices</code> contains your remote, with its MAC address (the one in this example is made up, yours will be different).</li>
+<li><code>bluetooth_key_bindings</code> has two buttons assigned under that same MAC. <code>KEY_103</code> and <code>KEY_108</code> are the codes for my remote and yours may differ, so assign them from the menu and check them here rather than copying them.</li>
+<li>The <code>Reader:</code> prefix depends on the language KOReader is set to. Mine is in Spanish, so in my file it shows as <code>Lector:</code>.</li>
+</ul>
+<h2>Keeping it working after sleep</h2>
+<p>With this, the remote worked until the Kobo went to sleep. When I woke it up, Bluetooth was still on but the remote didn't respond, and I had to disconnect it and reconnect it by hand in <em>Paired devices</em>.</p>
+<p>The plugin turns Bluetooth off when the Kobo sleeps and back on when it wakes, but that doesn't reopen the connection to the remote. On top of that, detection of reconnecting devices was turned off and set to stop after the first connection.</p>
+<p>The fix is in <em>Settings → Network → Bluetooth → Settings</em>:</p>
+<ol>
+<li>Leave <em>Auto-resume after wake</em> on, which turns Bluetooth back on when the Kobo wakes up.</li>
+<li>In the <em>Auto-detection</em> section, turn on <em>Auto-detect connecting devices</em>.</li>
+<li>In the same section, turn off <em>Stop detection after connection</em>.</li>
+</ol>
+<p>Now all it takes is to switch the Kobo on and press a button on the remote to wake it: the plugin detects the reconnection and the buttons work again.</p>
+<p>In the file, those three settings are these lines inside the same <code>["kobo_plugin"]</code> block:</p>
+<div class="codigo"><div class="codigo-barra" aria-hidden="true"><span class="codigo-punto am"></span><span class="codigo-punto"></span><span class="codigo-punto"></span><span class="codigo-titulo">lua</span></div><pre><code><span class="l">[<span class="s">"enable_bluetooth_auto_resume"</span>] <span class="op">=</span> <span class="v">true</span>,          <span class="k">-- turn Bluetooth back on after waking</span></span><span class="l">[<span class="s">"enable_auto_detection_polling"</span>] <span class="op">=</span> <span class="v">true</span>,         <span class="k">-- detect remotes that reconnect</span></span><span class="l">[<span class="s">"disable_auto_detection_after_connect"</span>] <span class="op">=</span> <span class="v">false</span>, <span class="k">-- don't stop detection after the first connection</span></span></code></pre></div>
+<p>If Bluetooth doesn't come back on after waking, check in KOReader's <em>Network</em> settings that Wi-Fi is restored on resume. On the Libra Colour they share a chip, and Bluetooth needs Wi-Fi switched on to come back.</p>
+<h2>Things to bear in mind</h2>
+<p><strong>Exit KOReader by restarting.</strong> According to the <a href="https://ogkevin.github.io/kobo.koplugin/dev/investigations/bluetooth/05-known-issues.html" rel="noopener" target="_blank">plugin documentation</a>, exiting to the Kobo reader with Bluetooth on can freeze the system and restart the Kobo, and that restart sometimes loses the KOReader launcher. It hasn't happened to me, but just in case I always exit with the option to reboot the device in the <em>Exit</em> menu.</p>
+<p><strong>Continuous detection uses a bit more battery.</strong> It's the price of having the remote reconnect on its own.</p>
+<p><strong>Only edit the settings file with KOReader closed.</strong> KOReader rewrites it when it exits, and one missing comma can stop it from starting. If you edit it by hand, make a copy first.</p>
+<h2>Reader's paradise</h2>
+<p>KOReader with my settings, Kobo's own remote and nothing clamped to the screen. Since I set up automatic detection I haven't had to touch it again.</p>
+<p>And in winter it's wonderful. Lying in bed or on the sofa, with your neck straight, the book at the right height thanks to the holder and the remote in your hand, under the blanket. You don't even have to take your hand out to turn the page. That's what reading should feel like.</p>
+<p>If it doesn't work first time, you know what to do: restart KOReader and try again.</p></div>
+  
+
+  <nav class="vecinas" aria-label="More posts">
+<a class="vecina" href="../../../en/blog/install-koreader-kobo/"><span class="muted pequeno">← Previous</span><span>How to install KOReader on your Kobo</span></a><a class="vecina derecha" href="../../../en/blog/how-to-stop-koreader-wifi-hang-kobo/"><span class="muted pequeno">Next →</span><span>How to stop KOReader hanging on Wi-Fi on your Kobo</span></a>  </nav>
+</article>
+      <footer class="pie">
+        <span>© 2026 Manuel Cernuda · www.manuelcernuda.net</span>
+        <span>
+<a href="../../../en/cookies/" data-cookies-abrir>Cookies</a> · <a href="../../../en/rss.xml">RSS</a>        </span>
+      </footer>
+    </div>
+  </main>
+</div>
+
+<div class="cookies-capa" id="aviso-cookies" hidden>
+  <div class="aviso-cookies" role="dialog" aria-modal="true" aria-labelledby="aviso-cookies-texto" tabindex="-1">
+    <p id="aviso-cookies-texto">This site uses analytics cookies to know how many people visit it. May I use them?</p>
+    <div class="aviso-botones">
+      <button type="button" class="aviso-boton" data-cookies="si">Accept</button>
+      <button type="button" class="aviso-boton" data-cookies="no">Decline</button>
+    </div>
+    <p class="aviso-mas"><a href="../../../en/cookies/">More information</a></p>
+  </div>
+</div>
+</body>
+</html>
